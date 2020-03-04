@@ -2,7 +2,7 @@
     <div class="card bg-light text-center" style="width: 485px; margin-left: 480px; margin-top:75px">
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
-            
+
             <form [formGroup] = "registerForm" (ngSubmit)="onSubmit()">
             <div class="form-group input-group">
                 <div class="input-group-prepend">
@@ -25,7 +25,7 @@
                     <div *ngIf="f.email.errors.required">Email is required</div>
                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                 </div>
-                
+
             </div> <!-- form-group// -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
@@ -59,23 +59,24 @@
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
                 <input class="form-control" formControlName="confirmPassword" placeholder="Repeat password" type="password" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
-                
+
                 <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                     <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
                 </div>
-            </div> <!-- form-group// -->                                      
+            </div> <!-- form-group// -->
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-            </div> <!-- form-group// -->      
+                <button type="submit" class="btn btn-primary btn-block" (click)="formSubmission()"> Create Account  </button>
+            </div> <!-- form-group// -->
             <p>
                 <a href="" style="background-color: red;" class="btn btn-block btn-twitter">    Login via Google</a>
             </p>
-            <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+            <p class="text-center">Have an account? <a href="" (click)="loadSignIn()" routerLink="/login">Log In</a> </p>
         </form>
-        
+
         </article>
         </div> <!-- card.// -->
 </div>
+<signup-form *ngIf="loadSignComponent"></signup-form>
 
-    
-    
+
+
