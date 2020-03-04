@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { RegistrationService } from './registration.service';
+import { userInterface } from '../common/interface';
+
 
 @Component({
   selector: 'app-registration',
@@ -8,33 +11,59 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
-  registerForm: FormGroup;
+  
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private registrationService : RegistrationService) { }
 
   ngOnInit(): void {
-      this.registerForm = this.formBuilder.group({
-        name: ['',Validators.required],
-        email:['',[Validators.required,Validators.email]],
-        phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
-        password:['',Validators.required,Validators.minLength(6)],
-        confirmPassword:['',Validators.required]
-      })
+      
   }
+
+  registerForm = this.formBuilder.group({
+    name: ['',[Validators.required,Validators.pattern(/^[A-Za-z][A-Za-z]*[A-Za-z]$/)]],
+    email:['',[Validators.required,Validators.email]],
+    phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+    password:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/)]],
+    confirmPassword:['',Validators.required]
+  },
+  {
+    validator: validatePassword('password', 'confirmPassword')
+})
 
   get f(){
     return this.registerForm.controls;
   }
 
-  onSubmit(){
+  register(){
     this.submitted = true;
+    var userObj : userInterface = {
+      name:  this.registerForm.value.name,
+      email:    this.registerForm.value.email,
+      phoneNumber:  this.registerForm.value.phoneNumber,
+      password: this.registerForm.value.password,
+    };
+    this.registrationService.registerUser(userObj).subscribe(
+      (success)=>{
+        console.log(success);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+    
   }
-  
-  // matchPassword(){
-  //   if(this.registerForm.controls.password == this.registerForm.controls.confirmPassword){
-  //     console.log("password match");
-  //   }
-  // }
+}
+function validatePassword(control : any , matchingControl:any){
+  return (formGroup : FormGroup) => {
+    const password = formGroup.controls[control];
+    const confirmPassword = formGroup.controls[matchingControl];
 
+    if(password.value != confirmPassword.value){
+      confirmPassword.setErrors({ validatePassword : true});
+    }
+    else{
+      confirmPassword.setErrors(null);
+    }
+  }
 }
