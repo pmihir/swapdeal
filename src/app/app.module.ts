@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {FormGroup, FormControl} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SignupFormComponent } from './signup-form/signup-form.component';
 import { RegistrationService } from './registration/registration.service';
 import { UriService } from './common/uri-service.service';
-import { HttpClientModule } from '@angular/common/http';
-import { LayoutComponent } from './layout/layout.component'; 
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LayoutComponent
+    LayoutComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
