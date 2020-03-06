@@ -7,12 +7,14 @@ import { RegistrationComponent } from './registration/registration.component';
 import {FormGroup, FormControl} from '@angular/forms';
 import { RegistrationService } from './registration/registration.service';
 import { UriService } from './common/uri-service.service';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { LayoutComponent } from './layout/layout.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -21,8 +21,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                  </div>
-                <input name="" class="form-control" formControlName="email" placeholder="Email address" type="text" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <input name="" class="form-control" formControlName="email" placeholder="Email address" type="text" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+                <div *ngIf="f.email.errors && f.email.touched" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required">Email is required</div>
                     <div *ngIf="f.email.errors.email">Enter a valid email address</div>
                 </div>
