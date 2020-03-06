@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { RegistrationService } from '../registration.service';
 import { SignupFormComponent } from '../signup-form/signup-form.component'
 import { Router } from '@angular/router';
+import { RegistrationService } from './registration.service';
+import { userInterface } from '../common/interface';
+
 
 @Component({
   selector: 'app-registration',
@@ -11,56 +13,66 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  registerForm: FormGroup;
+
   submitted = false;
   loadSignComponent: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private registrationService: RegistrationService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private registrationService : RegistrationService,
+    private router: Router) { }
 
   ngOnInit(): void {
-      this.registerForm = this.formBuilder.group({
-        name: ['',Validators.required],
-        email:['',[Validators.required,Validators.email]],
-        phoneNumber: ['', Validators.required],
-        password:['',[Validators.required,Validators.minLength(6)]],
-        confirmPassword:['',[Validators.required, Validators.minLength(6)]]
-      })
+
   }
+
+  registerForm = this.formBuilder.group({
+    name: ['',[Validators.required,Validators.pattern(/^[A-Za-z][A-Za-z]*[A-Za-z]$/)]],
+    email:['',[Validators.required,Validators.email]],
+    phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+    password:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/)]],
+    confirmPassword:['',Validators.required]
+  },
+  {
+    validator: validatePassword('password', 'confirmPassword')
+})
 
   get f(){
     return this.registerForm.controls;
   }
 
-  onSubmit(){
+  register() {
     this.submitted = true;
-  }
-
-  formSubmission() {
-    const regForm = {
-      name: this.registerForm.value.name,
-      email: this.registerForm.value.email,
-      phone: this.registerForm.value.phoneNumber,
-      password: this.registerForm.value.password
-    }
-    this.registrationService.submitRegistration(regForm).subscribe(
+    var userObj : userInterface = {
+      name:  this.registerForm.value.name,
+      email:    this.registerForm.value.email,
+      phoneNumber:  this.registerForm.value.phoneNumber,
+      password: this.registerForm.value.password,
+    };
+    this.registrationService.registerUser(userObj).subscribe(
       (success)=>{
-        console.log('success');
+        console.log(success);
       },
       (error)=>{
-        console.log("in error message", error);
-      }
-    )
-    // console.log(users);
-
+        console.log(error);
+      });
   }
-
   loadSignIn() {
-    this.loadSignComponent = !this.loadSignComponent;
-    console.log('loadsign', this.loadSignComponent);
     this.router.navigateByUrl('/login');
   }
+}
+function validatePassword(control : any , matchingControl:any){
 
+  return (formGroup : FormGroup) => {
+    const password = formGroup.controls[control];
+    const confirmPassword = formGroup.controls[matchingControl];
+    console.log(password, confirmPassword);
 
+    if(password.value != confirmPassword.value){
+      confirmPassword.setErrors({ validatePassword : true});
+    }
+    else{
+      confirmPassword.setErrors(null);
+    }
+  }
 }
 
 //  function matchPassword(){

@@ -3,7 +3,7 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
 
-            <form [formGroup] = "registerForm" (ngSubmit)="onSubmit()">
+            <form [formGroup] = "registerForm" (ngSubmit)="register()">
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -14,16 +14,17 @@
                 </div> -->
                 <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                     <div *ngIf="f.name.errors.required">User Name is required</div>
+                    <div *ngIf="f.name.errors.pattern">Enter a Valid Username</div>
                 </div>
             </div> <!-- form-group// -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                  </div>
-                <input name="" class="form-control" formControlName="email" placeholder="Email address" type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <input name="" class="form-control" formControlName="email" placeholder="Email address" type="text" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required">Email is required</div>
-                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    <div *ngIf="f.email.errors.email">Enter a valid email address</div>
                 </div>
 
             </div> <!-- form-group// -->
@@ -37,10 +38,10 @@
                     <option value="2">+198</option>
                     <option value="3">+701</option>
                 </select>
-                <input name="" class="form-control" formControlName="phoneNumber" placeholder="Phone number" type="text" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+                <input name="" class="form-control" formControlName="phoneNumber" placeholder="Phone number" type="number" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
                 <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                    <div *ngIf="f.phoneNumber.errors.required">phoneNumber is required</div>
-                    <div *ngIf="f.phoneNumber.errors.minlength">phoneNumber must be a valid </div>
+                    <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+                    <div *ngIf="f.phoneNumber.errors.pattern">Enter a valid Phone Number</div>
                 </div>
             </div> <!-- form-group// -->
              <!-- form-group end.// -->
@@ -51,7 +52,7 @@
                 <input class="form-control" formControlName="password" placeholder="Create password" type="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
-                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    <div *ngIf="f.password.errors.pattern">Enter a valid password</div>
                 </div>
             </div> <!-- form-group// -->
             <div class="form-group input-group">
@@ -62,10 +63,11 @@
 
                 <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                     <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                    <div *ngIf="f.confirmPassword.errors.validatePassword">Confimration password does not match</div>
                 </div>
             </div> <!-- form-group// -->
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" (click)="formSubmission()"> Create Account  </button>
+                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
             </div> <!-- form-group// -->
             <p>
                 <a href="" style="background-color: red;" class="btn btn-block btn-twitter">    Login via Google</a>
