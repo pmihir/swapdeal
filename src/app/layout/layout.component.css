@@ -5,7 +5,7 @@
     z-index: -1;
     top: 0;
     left: 0;
-    background-color: #e40046;
+    background-color: #f8f8f8;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 15px;
@@ -23,4 +23,21 @@
 
 .sidebar a:hover{
     color: #f1f1f1;
+}
+
+.nav-color{
+    background: #070000; 
+ 
+background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000); 
+ 
+background: linear-gradient(to right, #070000, #4C0001, #070000);
+}
+
+:host ::ng-deep .test {
+    background-color: white;
+    box-shadow: 4px 0 10px 0 rgba(0,0,0,.4);
+  }
+:host ::ng-deep .ui-sidebar{
+    padding: 0px 0px;
+
 }

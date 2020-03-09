@@ -9,6 +9,8 @@ export class LayoutComponent implements OnInit {
 
   title = 'swapdeal';
   check :string;
+  visibleSidebar1;
+  sidebarArr= ['Sports wear', 'cosmetics','Grocery', 'Electronics', 'Jwellery'];
   
   ngOnInit(){
     this.check = "0px";

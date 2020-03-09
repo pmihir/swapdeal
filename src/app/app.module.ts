@@ -10,6 +10,10 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { RegistrationService } from './registration/registration.service';
 import { UriService } from './common/uri-service.service';
 import { LayoutComponent } from './layout/layout.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {SidebarModule} from 'primeng/sidebar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { LayoutComponent } from './layout/layout.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ScrollPanelModule,
+    SidebarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     RegistrationService,

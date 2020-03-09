@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SignInService } from './sign-in.service';
 
 @Component({
   selector: 'signup-form',
@@ -7,15 +8,24 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent {
+  constructor(private signInService: SignInService) {
+
+  }
 
   form = new FormGroup({
     username : new FormControl('', [Validators.required, Validators.email]),
     password : new FormControl('', [Validators.required, Validators.minLength(6)])
   });
   get loginControls() {
-    return this.form.controls;
+    return this.form.value;
   }
   signIn() {
+    
+    const signInForm = {
+     email: this.loginControls.username,
+      password : this.loginControls.password
+    };
+    this.signInService.getAuthentication(signInForm);
 
   }
 }

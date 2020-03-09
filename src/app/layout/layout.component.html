@@ -1,4 +1,4 @@
-<nav style="background-color: #e40046;" class="navbar navbar-expand-lg navbar-light">
+<!-- <nav style="background-color: #e40046;" class="navbar navbar-expand-lg navbar-light">
     <i style="margin-left: .2em;" class="fa fa-bars text-white" (click)="sidenavToggle();"></i>
     <a class="navbar-brand" href="#" style="color: white; padding-left: 45px; font-size: 25px;">swapdeal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,21 +33,46 @@
         </li>
       </ul>
     </div>
+  </nav> -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d5f912;">
+    <i style="margin-left: .2em; color: black; font-size: 20px;" class="fa fa-bars" (click)="visibleSidebar1 = true"></i>
+    <a style="padding-left: 20px;"><img src="assets/studio-logoholik-icon.png" width="50px" height="50px"></a>
+    <a class="navbar-brand" href="#" style="padding-left: 12px; font-size: 23px; font-family: Bradley Hand, cursive">Swapdeal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" style="background-color: #f8f8f8;width: 400px; font-size: 14px;  border-radius: 0px;" placeholder="Search products & brands" aria-label="Search">
+            <button type="submit" style="background-color: black; border-color: black; border-radius: 0px; height:  32px;padding: 0px 10px;font-family: Bradley Hand, cursive" class="btn btn-primary"><span><i class="fa fa-search"></i><span style="padding-left:10px">Search</span></span></button>
+          </form>
+        </li>
+      </ul> 
+      <ul class="nav navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" href="#" ><i class="fa fa-shopping-cart" style="font-size: 22px;color: black; "></i><span style="color: black;padding-left: 15px; font-size: 18px; font-family: Bradley Hand, cursive">Cart</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-user" style="font-size: 22px;padding-left: 15px;color: black;"></i><span style="color: black;padding-left: 15px; font-family: Bradley Hand, cursive">Sign In</span></a>
+        </li>
+    </ul>
+    </div>
   </nav>
   
-  <div id="mySidebar" class="sidebar">
+  <!-- <div id="mySidebar" class="sidebar">
     <div>
-      <a class="page-icons">
-        <a style="margin-top: -0.6em; margin-bottom:12px;">
-          Product1
-        </a>
-        <a style="margin-bottom:12px;">
-          Product2
-        </a>
-        <a style=" margin-bottom:12px;">
-          Product3
-        </a>
-      </a>
+      SHOP BY CATEGORY
     </div>
-  </div>
+  </div> -->
+  <p-sidebar [(visible)]="visibleSidebar1" styleClass="test different" [showCloseIcon]="false" [baseZIndex]="10000">
+    <div style="width: 100%;background-color: #d5f912 ;">
+      <h3 style="font-weight:normal">Hi Mihir</h3>
+    </div>
+    <ul *ngFor="let option of sidebarArr" style="list-style-type: none;">
+      <li>{{option}}</li>
+    </ul>
+</p-sidebar>
   
