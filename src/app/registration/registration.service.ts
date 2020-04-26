@@ -17,6 +17,7 @@ export class RegistrationService {
   }
 
   registerUser( newUser : userInterface){
-    return this.http.post(this.userMicroServiceUrl + 'register', newUser) as Observable<any>;
+    console.log(newUser);
+    return this.http.post("http://localhost:3000/user/register", newUser) as Observable<any>;
   }
 }
