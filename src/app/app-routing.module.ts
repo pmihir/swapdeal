@@ -5,12 +5,13 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResponseResetPasswordComponent } from './response-reset-password/response-reset-password.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   {path : '', component: RegistrationComponent},
   {path : 'login', component: SignupFormComponent},
-  {path : 'dashboard' ,component : DashboardComponent},
+  {path : 'dashboard' ,component : DashboardComponent, canActivate : [AuthGuard]},
   {path : 'requestReset' , component : ResetpasswordComponent},
   {path : 'response-reset-password/:token', component : ResponseResetPasswordComponent}
 ];

@@ -11,30 +11,33 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup] = "loginForm" (ngSubmit)="login('Local')">
+          <form [formGroup]="loginForm" (ngSubmit)="login('Local')">
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
               </div>
-              <input type="text" class="form-control" placeholder="Username or Email" formControlName="emailId">
-              <!-- <div class="error-message" *ngIf="loginForm.get('emailId').invalid && loginForm.get('emailId').tocuhed">
-                Username or Email is Required
-              </div> -->
+              <input type="text" class="form-control" placeholder="Username or Email" formControlName="emailId"
+                [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }">
+              <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+                <div *ngIf="f.emailId.errors.required">Email ID is required</div>
+                <div *ngIf="f.emailId.errors.email">Enter a Valid Email ID</div>
+              </div>
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-key"></i></span>
               </div>
-              <input type="password" class="form-control" placeholder="Password" formControlName="password">
-              <!-- <div class="error-message" *ngIf="loginForm.get('password').invalid && loginForm.get('password').tocuhed">
-                Password is Required
-              </div> -->
+              <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.pattern">Enter a valid password</div>
+              </div>
             </div>
             <div class="row align-items-center remember">
               <input type="checkbox">Remember Me
             </div>
             <div class="form-group">
-              <input type="submit" value="Login" [disabled]="loginForm.invalid" class="btn float-right login_btn">
+              <input type="submit" value="Login" class="btn float-right login_btn">
             </div>
           </form>
         </div>
@@ -51,4 +54,3 @@
   </div>
 </div>
 <notifier-container></notifier-container>
-
