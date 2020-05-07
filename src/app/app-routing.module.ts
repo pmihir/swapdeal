@@ -11,7 +11,7 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {path : '', component: RegistrationComponent},
   {path : 'login', component: SignupFormComponent},
-  {path : 'dashboard' ,component : DashboardComponent, canActivate : [AuthGuard]},
+  {path : 'dashboard' ,component : DashboardComponent},
   {path : 'requestReset' , component : ResetpasswordComponent},
   {path : 'response-reset-password/:token', component : ResponseResetPasswordComponent}
 ];

@@ -21,7 +21,7 @@ export class SignupFormComponent {
   createForm() {
     this.loginForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/)]]
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{2,10}$/)]]
     })
     return true;
   }
@@ -32,10 +32,10 @@ export class SignupFormComponent {
 
 
   public login(mode) {
-    this.submitted = true;
-    if (!this.loginForm.invalid) {
-      
-      if (mode == "Local") {
+    if (mode == "Local") {
+      this.submitted = true;
+      if (!this.loginForm.invalid) {
+
         let localObject = {
           email: this.loginForm.value.emailId,
           password: this.loginForm.value.password,
@@ -52,29 +52,31 @@ export class SignupFormComponent {
             this.showNotification('warning', error.error.message);
           }
         )
-      }
-      if (mode == "Google") {
-        let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-        this.authService.signIn(socialPlatformProvider).then(socialUser => {
-          let localObject = {
-            email: socialUser.email,
-            firstname: socialUser.firstName,
-            lastname: socialUser.lastName,
-            username: socialUser.name,
-            mode: 'Social'
-          }
-          this.signInService.socialLogin(localObject).subscribe(
-            (success) => {
-              sessionStorage.setItem('access_token', success.token);
-              sessionStorage.setItem('username', success.user.username);
-              this.router.navigate(['dashboard']);
-            },
-            (error) => {
-              console.log(error);
-            })
-        })
+
       }
     }
+    else {
+      let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+      this.authService.signIn(socialPlatformProvider).then(socialUser => {
+        let localObject = {
+          email: socialUser.email,
+          firstname: socialUser.firstName,
+          lastname: socialUser.lastName,
+          username: socialUser.name,
+          mode: 'Social'
+        }
+        this.signInService.socialLogin(localObject).subscribe(
+          (success) => {
+            sessionStorage.setItem('access_token', success.token);
+            sessionStorage.setItem('username', success.user.username);
+            this.router.navigate(['/dashboard']);
+          },
+          (error) => {
+            console.log(error);
+          })
+      })
+    }
+
   }
 
   showNotification(type, message) {
