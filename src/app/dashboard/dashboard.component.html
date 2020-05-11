@@ -1,3 +1,5 @@
+
+
 <nav id="navigation" class="navbar navbar-expand-lg navbar-light">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav main-nav">
@@ -92,15 +94,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3" *ngFor="let product of newProducts">
         <div class="product">
           <div class="product-img">
-            <img src="../../assets/product01.png" style="width: 100%;" alt="">
+            <img src="{{product.image}}" style="width: 100%;" alt="">
           </div>
           <div class="product-body">
-            <p class="product-category">Laptops</p>
-            <h3 class="product-name"><a href="#">HP 14 PENTIUM GOLD(4GB/256GB/I5/2GB)</a></h3>
-            <h4 class="product-price">RS 27,990 <del class="product-old-price">RS 32,000</del></h4>
+            <p class="product-category">{{product.category}}</p>
+            <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
+            <h4 class="product-price">{{product.discountedPrice}} <del class="product-old-price">{{product.price}}</del></h4>
             <div class="product-rating">
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
@@ -113,90 +115,6 @@
               <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
               <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
             </div>
-          </div>
-          <div class="add-to-cart">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="product">
-          <div class="product-img">
-            <img src="../../assets/lenovo v-146.jpg" style="width: 100%;" alt="">
-          </div>
-          <div class="product-body">
-            <p class="product-category">Laptops</p>
-            <h3 class="product-name"><a href="#">LENOVO V-145-AMD-A6(4GB RAM/500GB HDD,WINDOWS 10)</a></h3>
-            <h4 class="product-price">RS 16,979 <del class="product-old-price">RS 25,999</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-            </div>
-            
-          </div>
-          <div class="add-to-cart">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="product">
-          <div class="product-img">
-            <img src="../../assets/dell vostro.webp" style="width: 100%;" alt="">
-          </div>
-          <div class="product-body">
-            <p class="product-category">Laptops</p>
-            <h3 class="product-name"><a href="#">DELL VOSTRO 3581(I3/4GB/1TB HDD,WINDOWS 10)</a></h3>
-            <h4 class="product-price">RS 27,989 <del class="product-old-price">RS 39,097</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-            </div>
-            
-          </div>
-          <div class="add-to-cart">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="product">
-          <div class="product-img">
-            <img src="../../assets/hp-16.jpg" style="width: 100%;" alt="">
-          </div>
-          <div class="product-body">
-            <p class="product-category">Laptops</p>
-            <h3 class="product-name"><a href="#">HP 14 7<sup>th</sup> GEN INTEL CORE(8 GB,256GB SSD,WINDOWS 10)</a></h3>
-            <h4 class="product-price">RS 32,985 <del class="product-old-price">RS 35,999</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-            </div>
-            
           </div>
           <div class="add-to-cart">
             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
@@ -256,14 +174,6 @@
       <div class="col-md-12">
         <div class="section-title">
           <h3 class="title">Top sells</h3>
-          <div class="section-nav">
-            <ul class="section-tab-nav tab-nav">
-              <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-              <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-              <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-              <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -464,3 +374,7 @@
     </div>
   </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white;">Loading...</p>
+</ngx-spinner>
