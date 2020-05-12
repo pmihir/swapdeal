@@ -93,8 +93,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-3" *ngFor="let product of newProducts">
+    <div class="row transition" >
+      <div class="col-md-3" *ngFor="let product of newProductDisplay">
         <div class="product">
           <div class="product-img">
             <img src="{{product.image}}" style="width: 100%;" alt="">
@@ -102,7 +102,7 @@
           <div class="product-body">
             <p class="product-category">{{product.category}}</p>
             <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
-            <h4 class="product-price">{{product.discountedPrice}} <del class="product-old-price">{{product.price}}</del></h4>
+            <h4 class="product-price">{{product.discountPrice}} <del class="product-old-price">{{product.price}}</del></h4>
             <div class="product-rating">
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
@@ -120,6 +120,12 @@
             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="slick-float">
+        <button class="slick-prev slick-arrow" (click)="prev()"></button>
+        <button class="slick-next slick-arrow" (click)="next()"></button>
       </div>
     </div>
   </div>
