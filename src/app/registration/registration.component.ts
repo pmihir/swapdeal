@@ -60,6 +60,7 @@ export class RegistrationComponent implements OnInit {
     
     this.registrationService.registerUser(userObj).subscribe(
       (success)=>{
+        console.log(success);
         // this.flashMessagesService.show('User is successfully Registered'),{
         //   classes:['alert','alert success'],
         //   timeout:4000
@@ -73,8 +74,9 @@ export class RegistrationComponent implements OnInit {
         
       },
       (error)=>{
+        console.log(error);
         this.spinner.hide();
-        this.showNotification('warning', "Email is already Registered!!!");
+        this.showNotification('warning', error.error.message);
         this.errorMessage = error.error.message;
       });
   }
