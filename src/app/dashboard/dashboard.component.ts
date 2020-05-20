@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {Observable,timer,interval, Subscription} from 'rxjs';
+import {take,map} from 'rxjs/operators';
+import { CountDownService } from './count-down.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +17,12 @@ export class DashboardComponent implements OnInit {
   displayIndex = 0;
   displaySize = 4;
   newProducts : any[];
+  countDown : Subscription;
+  counter = 36000;
+  tick = 1000;
+  hours : number;
+  minutes : number;
+  seconds : number;
 
   // newProducts : any[] = [
   //   {category:'Laptop',name : 'HP 14 PENTIUM GOLD(4GB/256GB/I5/2GB)',discountPrice:'RS 37990', price: 'RS 43000',image:'../../assets/product01.png'},
@@ -25,11 +34,18 @@ export class DashboardComponent implements OnInit {
   //   {category:'Laptop',name : 'HP 17 PENTIUM GOLD(4GB/256GB/I5/2GB)',discountPrice:'RS 37990', price: 'RS 43000',image:'../../assets/product01.png'},
   //   {category:'Laptop',name : 'HP 18 PENTIUM GOLD(4GB/256GB/I5/2GB)',discountPrice:'RS 37990', price: 'RS 43000',image:'../../assets/product01.png'}
   // ];
-
-  constructor(private dashboardService : DashboardService, private spinner: NgxSpinnerService) { }
+  constructor(private dashboardService : DashboardService, private spinner: NgxSpinnerService, private countDownService : CountDownService) {
+    
+   }
 
   ngOnInit(): void {
     this.getNewProductData();
+    this.countDown = this.countDownService.getCounter(this.tick).subscribe(()=>{
+      this.hours = Math.floor(this.counter/3600);
+      this.minutes = Math.floor(this.counter%3600/60);
+      this.seconds = Math.floor(this.counter%3600%60);
+      this.counter--;
+    })
     
   }
 
@@ -63,6 +79,7 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getNewProductData().subscribe(
       (success)=>{
         this.newProducts = success;
+        console.log(this.newProducts);
         this.newProductDisplay = this.newProducts.slice(0,this.displaySize);
         this.spinner.hide();
       },(error)=>{
