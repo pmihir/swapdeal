@@ -1,5 +1,3 @@
-
-
 <nav id="navigation" class="navbar navbar-expand-lg navbar-light">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav main-nav">
@@ -47,7 +45,7 @@
       </div>
       <div class="col-md-3">
         <div class="shop">
-          <div class="shop-img" >
+          <div class="shop-img">
             <img src="../../assets/kitchen1.jpeg" height="170px" alt="">
           </div>
           <div class="shop-body">
@@ -85,16 +83,16 @@
           <h3 class="title">New Products</h3>
           <div class="section-nav">
             <ul class="section-tab-nav tab-nav">
-              <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-              <li><a data-toggle="tab" (click)="changeProduct('Smartphones')" href="#tab1">Smartphones</a></li>
-              <li><a data-toggle="tab" (click)="changeProduct('Sports')" href="#tab1">Sports</a></li>
-              <li><a data-toggle="tab" (click)="changeProduct('Accessories')" href="#tab1">Accessories</a></li>
+              <li><a data-toggle="tab" href="#tab1" (click)="changeProduct('Laptop')">Laptops</a></li>
+              <li><a data-toggle="tab" (click)="changeProduct('Smartphones')" href="#tab2">Smartphones</a></li>
+              <li><a data-toggle="tab" (click)="changeProduct('Sports')" href="#tab3">Sports</a></li>
+              <li><a data-toggle="tab" (click)="changeProduct('Accessories')" href="#tab4">Accessories</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="row transition" >
+    <div class="row transition">
       <div class="col-md-3" *ngFor="let product of newProductDisplay">
         <div class="product">
           <div class="product-img">
@@ -103,17 +101,16 @@
           <div class="product-body">
             <p class="product-category">{{product.category}}</p>
             <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
-            <h4 class="product-price">{{product.discountPrice}} <del class="product-old-price">{{product.price}}</del></h4>
+            <h4 class="product-price">{{product.discountPrice}} <del class="product-old-price">{{product.price}}</del>
+            </h4>
             <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
+              <i *ngFor="let n of product.rating | range" class="fa fa-star"></i>
             </div>
             <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
+                  wishlist</span></button>
+              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to
+                  compare</span></button>
               <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
             </div>
           </div>
@@ -125,10 +122,12 @@
     </div>
     <div class="row">
       <div class="slick-float">
-        <button class="slick-prev slick-arrow" (click)="prev()"></button>
-        <button class="slick-next slick-arrow" (click)="next()"></button>
+        <button class="slick-prev slick-arrow" (click)="prev('NewProduct')"></button>
+        <button class="slick-next slick-arrow" (click)="next('NewProduct')"></button>
       </div>
     </div>
+    
+    
   </div>
 </div>
 <div id="hot-deal" class="section">
@@ -139,33 +138,34 @@
       <div class="col-md-12">
         <div class="hot-deal">
           <ul class="hot-deal-countdown">
-            <li><div>
-              <h3>2</h3>
-              <span>Days</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>{{hours}}</h3>
-              <span>Hours</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>{{minutes}}</h3>
-              <span>Mins</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>{{seconds}}</h3>
-              <span>Secs</span>
-            </div>
-          </li>
+            <li>
+              <div>
+                <h3>2</h3>
+                <span>Days</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>{{hours}}</h3>
+                <span>Hours</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>{{minutes}}</h3>
+                <span>Mins</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>{{seconds}}</h3>
+                <span>Secs</span>
+              </div>
+            </li>
           </ul>
           <h2 class="text-uppercase">hot deal this week</h2>
-					<p>New Collection Up to 50% OFF</p>
-					<a class="primary-btn cta-btn" href="#">Shop now</a>
+          <p>New Collection Up to 50% OFF</p>
+          <a class="primary-btn cta-btn" href="#">Shop now</a>
         </div>
       </div>
     </div>
@@ -185,104 +185,39 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3" *ngFor="let product of topSellDisplay">
         <div class="product">
           <div class="product-img">
-            <img src="../../assets/product01.png" style="width: 100%;" alt="">
+            <img src="{{product.image}}" style="width: 100%;" alt="">
           </div>
           <div class="product-body">
-            <p class="product-category">Electronics</p>
-            <h3 class="product-name"><a href="#">Lenovo Ideapad 330(8 GB/2TB HDD/DOS/2 GB Graphics)</a></h3>
-            <h4 class="product-price">RS 67,090 <del class="product-old-price">RS 46,990</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
+            <p class="product-category">{{product.category}}</p>
+            <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
+            <h4 class="product-price">{{product.discountPrice}} <del class="product-old-price">{{product.price}}</del>
+            </h4>
+            <div  class="product-rating">
+              <i *ngFor="let n of product.rating | range" class="fa fa-star"></i>
             </div>
             <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
+                  wishlist</span></button>
+              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to
+                  compare</span></button>
               <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="product">
-          <div class="product-img">
-            <img src="../../assets/redmi1.jpg" style="width: 100%" alt="">
-          </div>
-          <div class="product-body">
-            <p class="product-category">smartphones</p>
-            <h3 class="product-name"><a href="#">Redmi Note 8 Pro(Electric Blue, 6 GB Ram, 64GB Stroage)</a></h3>
-            <h4 class="product-price">RS 15,999<del class="product-old-price">RS 16,999</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="product">
-          <div class="product-img">
-            <img src="../../assets/sports.jpg" style="width: 100%;" alt="">
-          </div>
-          <div class="product-body">
-            <p class="product-category">Sports</p>
-            <h3 class="product-name"><a href="#">Men's Max Seawalk idp running shoes</a></h3>
-            <h4 class="product-price">RS 1599 <del class="product-old-price">RS 1699</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="product">
-          <div class="product-img">
-            <img src="../../assets/accessories.webp" style="width: 100%;" alt="">
-          </div>
-          <div class="product-body">
-            <p class="product-category">Accessories</p>
-            <h3 class="product-name"><a href="#">JBL c300si extra bass wireless on-ear headphones</a></h3>
-            <h4 class="product-price">RS 2399 <del class="product-old-price">RS 3499</del></h4>
-            <div class="product-rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-            </div>
+          <div class="add-to-cart">
+            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
           </div>
         </div>
       </div>
     </div>
-    
+    <div class="row">
+      <div class="slick-float">
+        <button class="slick-prev slick-arrow" (click)="prev('TopSells')"></button>
+        <button class="slick-next slick-arrow" (click)="next('TopSells')"></button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -374,8 +309,11 @@
         </ul>
         <span class="copyright">
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Application is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Mihir & Aisha</a>
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;
+          <script>document.write(new Date().getFullYear());</script> All rights reserved | This Application is made with
+          <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Mihir &
+            Aisha</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </span>
       </div>
     </div>

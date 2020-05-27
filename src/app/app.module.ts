@@ -21,6 +21,9 @@ import { SocialLoginModule, AuthServiceConfig , AuthService} from "angularx-soci
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResponseResetPasswordComponent } from './response-reset-password/response-reset-password.component';
+import {CarouselModule} from 'primeng/carousel';
+import {ButtonModule} from 'primeng/button';
+import { RangePipe } from './dashboard/range.pipe';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -84,6 +87,7 @@ export function socialConfigs() {
     DashboardComponent,
     ResetpasswordComponent,
     ResponseResetPasswordComponent,
+    RangePipe,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,9 @@ export function socialConfigs() {
     SidebarModule,
     BrowserAnimationsModule,
     NotifierModule.withConfig(customNotifierOptions),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CarouselModule,
+    ButtonModule
   ],
   providers: [
     RegistrationService,
