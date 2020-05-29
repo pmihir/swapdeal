@@ -47,8 +47,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
-    this.spinner.show();
     this.submitted = true;
+    if(this.registerForm.invalid){
+      return;
+    }
+    this.spinner.show();
+    
     var userObj : userInterface = {
       firstname:this.registerForm.value.firstName,
       lastname:this.registerForm.value.lastName,
@@ -61,12 +65,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationService.registerUser(userObj).subscribe(
       (success)=>{
         console.log(success);
-        // this.flashMessagesService.show('User is successfully Registered'),{
-        //   classes:['alert','alert success'],
-        //   timeout:4000
-        // }
         this.spinner.hide();
-        
         this.successMessage = success.message;
         this.submitted=false;
         this.registerForm.reset();

@@ -122,7 +122,6 @@ export class DashboardComponent implements OnInit {
       if (parseInt(a.rating) > parseInt(b.rating)) return 1;
     });
     this.topSells = this.topSells.reverse().slice(0, 12);
-    console.log(this.topSells);
     this.topSellDisplay = this.topSells.slice(0,this.displaySize);
   }
 

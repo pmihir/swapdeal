@@ -18,6 +18,7 @@ export class ResponseResetPasswordComponent implements OnInit {
   resetToken : null;
   CurrentState: any;
   IsResetFormValid = true;
+  tokenError : String;
 
   constructor(private responseResetService : ResponseResetServiceService, private router : Router, private route : ActivatedRoute, private fb : FormBuilder,private notifier : NotifierService, private spinner: NgxSpinnerService) { 
     this.CurrentState = "wait";
@@ -39,6 +40,7 @@ export class ResponseResetPasswordComponent implements OnInit {
       },
       (err)=>{
         this.CurrentState = "NotVerfied";
+        this.tokenError = err.error.message;
       }
     )
   }

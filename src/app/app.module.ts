@@ -24,6 +24,7 @@ import { ResponseResetPasswordComponent } from './response-reset-password/respon
 import {CarouselModule} from 'primeng/carousel';
 import {ButtonModule} from 'primeng/button';
 import { RangePipe } from './dashboard/range.pipe';
+import { FooterComponent } from './footer/footer.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -88,6 +89,7 @@ export function socialConfigs() {
     ResetpasswordComponent,
     ResponseResetPasswordComponent,
     RangePipe,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
