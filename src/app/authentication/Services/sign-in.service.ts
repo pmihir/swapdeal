@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UriService } from '../common/uri-service.service';
+import { UriService } from '../../common/uri-service.service';
 import { Observable } from 'rxjs';
 
 

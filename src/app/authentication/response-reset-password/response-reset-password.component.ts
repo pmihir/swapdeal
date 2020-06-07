@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ResponseResetServiceService } from './response-reset-service.service';
+import { ResponseResetServiceService } from '../Services/response-reset-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {NotifierService} from 'angular-notifier';

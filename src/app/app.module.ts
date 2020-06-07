@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationComponent } from './authentication/registration/registration.component';
 import {FormGroup, FormControl} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { RegistrationService } from './registration/registration.service';
+import { SignupFormComponent } from './authentication/signup-form/signup-form.component';
+import { RegistrationService } from './authentication/Services/registration.service';
 import { UriService } from './common/uri-service.service';
 import { LayoutComponent } from './layout/layout.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
@@ -19,12 +19,13 @@ import { NgxSpinnerModule} from 'ngx-spinner';
 import {AuthInterceptor} from './auth.interceptor';
 import { SocialLoginModule, AuthServiceConfig , AuthService} from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { ResponseResetPasswordComponent } from './response-reset-password/response-reset-password.component';
+// import { ResetpasswordComponent } from './authentication/resetpassword/resetpassword.component';
+import { ResponseResetPasswordComponent } from './authentication/response-reset-password/response-reset-password.component';
 import {CarouselModule} from 'primeng/carousel';
 import {ButtonModule} from 'primeng/button';
 import { RangePipe } from './dashboard/range.pipe';
 import { FooterComponent } from './footer/footer.component';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -82,12 +83,8 @@ export function socialConfigs() {
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
     LayoutComponent,
-    SignupFormComponent,
     DashboardComponent,
-    ResetpasswordComponent,
-    ResponseResetPasswordComponent,
     RangePipe,
     FooterComponent,
   ],
@@ -103,10 +100,10 @@ export function socialConfigs() {
     NotifierModule.withConfig(customNotifierOptions),
     NgxSpinnerModule,
     CarouselModule,
-    ButtonModule
+    ButtonModule,
+    AuthenticationModule
   ],
   providers: [
-    RegistrationService,
     UriService,
     AuthInterceptor,
     AuthService,

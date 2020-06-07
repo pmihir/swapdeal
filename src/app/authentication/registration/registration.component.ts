@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SignupFormComponent } from '../signup-form/signup-form.component'
 import { Router, Routes } from '@angular/router';
-import { RegistrationService } from './registration.service';
-import { userInterface } from '../common/interface';
+import { RegistrationService } from '../Services/registration.service';
+import { userInterface } from '../../common/interface';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {NotifierService} from 'angular-notifier';
 

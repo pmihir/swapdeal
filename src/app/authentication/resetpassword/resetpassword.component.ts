@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ResetpasswordService } from './resetpassword.service';
+import { ResetpasswordService } from '../Services/resetpassword.service';
 import { Router } from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {NotifierService} from 'angular-notifier';
@@ -21,6 +21,7 @@ export class ResetpasswordComponent implements OnInit {
   constructor(private resetPasswordService :  ResetpasswordService, private router : Router, private notifier : NotifierService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    console.log("in component");
     this.RequestResetForm = new FormGroup({
       'email' : new FormControl(null,[Validators.required, Validators.email])
     });

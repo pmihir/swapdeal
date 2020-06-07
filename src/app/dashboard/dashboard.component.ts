@@ -100,6 +100,7 @@ export class DashboardComponent implements OnInit {
     this.spinner.show();
     this.dashboardService.getNewProductData().subscribe(
       (success) => {
+        console.log(success);
         this.newProducts = success[0];
         this.currentProduct = this.newProducts["Laptop"];
         this.newProductDisplay = this.currentProduct.slice(0, this.displaySize);

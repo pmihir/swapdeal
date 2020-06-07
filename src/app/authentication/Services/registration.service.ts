@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UriService} from '../common/uri-service.service';
+import { UriService} from '../../common/uri-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { userInterface } from '../common/interface';
+import { userInterface } from '../../common/interface';
 
 
 @Injectable({

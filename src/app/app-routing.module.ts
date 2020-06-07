@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegistrationComponent } from './registration/registration.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
+import { RegistrationComponent } from './authentication/registration/registration.component';
+import { SignupFormComponent } from './authentication/signup-form/signup-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { ResponseResetPasswordComponent } from './response-reset-password/response-reset-password.component';
+import { ResetpasswordComponent } from './authentication/resetpassword/resetpassword.component';
+import { ResponseResetPasswordComponent } from './authentication/response-reset-password/response-reset-password.component';
 import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
-  {path : '', component: RegistrationComponent},
-  {path : 'login', component: SignupFormComponent},
-  {path : 'dashboard' ,component : DashboardComponent},
-  {path : 'requestReset' , component : ResetpasswordComponent},
-  {path : 'response-reset-password/:token', component : ResponseResetPasswordComponent}
+  {path : '' ,component : DashboardComponent},
+  {path : 'authentication',loadChildren: () => import('./authentication/authentication.module').then(mod => mod.AuthenticationModule)}
 ];
 
 @NgModule({
