@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SignInService } from '../authentication/Services/sign-in.service';
 import { Router } from '@angular/router';
+import { DataService } from '../store/data.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-layout',
@@ -13,15 +15,17 @@ export class LayoutComponent implements OnInit {
   userName : String = "Sign In";
   check :string;
   visibleSidebar1;
+  message:any;
   sidebarArr= ['Beauty, Health, Grocery', 'TV, Appliances, Electronics','Sport, Fitness, Bags, Luggage', 'Men Fashion', 'Women Fashion'];
   
   ngOnInit(){
+    
     this.check = "0px";
     document.getElementById("mySidebar").style.width = "0px";
-    
+    this.dataService.currentMessage.subscribe(message=>this.message=message);
   }
 
-  constructor(private signInService : SignInService, private router: Router){}
+  constructor(private signInService : SignInService, private router: Router,private dataService : DataService){}
 
   ngDoCheck(){
     if(sessionStorage.getItem('access_token') == null){
@@ -49,5 +53,11 @@ export class LayoutComponent implements OnInit {
     if (sessionStorage.removeItem('access_token') == null) {
       this.router.navigate(['/']);
     }
+  }
+
+  changeCategory(category : string){
+    // this.dataService.changeMessage(category);
+    console.log(category);
+    this.router.navigate(['/store',category]);
   }
 }

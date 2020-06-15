@@ -26,6 +26,9 @@ import {ButtonModule} from 'primeng/button';
 import { RangePipe } from './dashboard/range.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { StoreComponent } from './store/store.component';
+import {ListboxModule} from 'primeng/listbox';
+import {SliderModule} from 'primeng/slider';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -87,6 +90,7 @@ export function socialConfigs() {
     DashboardComponent,
     RangePipe,
     FooterComponent,
+    StoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +105,9 @@ export function socialConfigs() {
     NgxSpinnerModule,
     CarouselModule,
     ButtonModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ListboxModule,
+    SliderModule
   ],
   providers: [
     UriService,

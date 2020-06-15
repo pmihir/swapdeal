@@ -177,6 +177,52 @@ float: none;
     color: #FFF;
     background-color: #D10024;
   }
+
+  /* Navbar CSS */
+
+#navigation {
+  background: #FFF;
+  border-bottom: 2px solid #E4E7ED;
+  border-top: 3px solid #D10024;
+}
+
+.navbar-font{
+  font-family: Montserrat, sans-serif;
+  color: red;
+}
+
+.main-nav>li+li {
+  margin-left: 60px;
+}
+
+.main-nav>li>a {
+  padding: 5px 0px;
+  color: black;
+  font-size: 13px;
+}
+
+.main-nav{
+  margin:auto
+}
+
+.main-nav>li>a:hover, .main-nav>li>a:focus, .main-nav>li.active>a {
+  color: #D10024;
+  background-color: transparent;
+}
+
+.main-nav>li>a:after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: #D10024;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.main-nav>li>a:hover:after, .main-nav>li>a:focus:after, .main-nav>li.active>a:after {
+  width: 100%;
+}
   
   
 
