@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './data.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { PagerService } from './pager.service';
@@ -12,12 +11,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./store.component.css']
 })
 export class StoreComponent implements OnInit {
+  
   categorySelected: string;
   productArray: any[];
   categoryFilterArray: any[] = [];
   selectedCategory: any[] = [];
   selectedBrand: any[] = [];
-  productDisplay: any[] = [];
   hash = new Object();
   objectKeys = Object.keys;
   rangeValues: number[] = [1, 100000];
@@ -33,26 +32,24 @@ export class StoreComponent implements OnInit {
   maxRange: number = 100000;
   resultTemp: any[];
   brandDict = new Object();
+  isClicked = [];
+  selectedIndex : number = 0;
 
-  constructor(private dataService: DataService, private spinner: NgxSpinnerService, private route: ActivatedRoute, private router: Router, private pagerService: PagerService, private storeService: StoreService) { }
+  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private router: Router, private pagerService: PagerService, private storeService: StoreService) { }
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.categorySelected = params.get('category');
       this.getProductData();
-
     });
   }
   getProductData() {
     this.spinner.show();
     this.storeService.getElectronicsCollection(this.categorySelected).subscribe(
       (success) => {
-        console.log(success);
         this.productArray = success;
         this.displayUI = this.productArray;
         this.resultTemp = this.productArray;
-        this.productDisplay = this.productArray;
         for (let i = 0; i < this.productArray.length; i++) {
           let temp = this.productArray[i].category;
           if (!(temp in this.hash)) {
@@ -124,7 +121,6 @@ export class StoreComponent implements OnInit {
         }
       }
     }
-    console.log(this.selectedBrand);
     this.resultArray();
   }
   resultArray() {
@@ -150,6 +146,10 @@ export class StoreComponent implements OnInit {
     }
     this.resultTemp = this.displayUI;
     this.setPage(1);
+  }
+
+  setIndex(index : number){
+    this.selectedIndex = index;    
   }
 
 }

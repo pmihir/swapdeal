@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignInService } from '../authentication/Services/sign-in.service';
 import { Router } from '@angular/router';
-import { DataService } from '../store/data.service';
 import { stringify } from 'querystring';
 
 @Component({
@@ -22,10 +21,9 @@ export class LayoutComponent implements OnInit {
     
     this.check = "0px";
     document.getElementById("mySidebar").style.width = "0px";
-    this.dataService.currentMessage.subscribe(message=>this.message=message);
   }
 
-  constructor(private signInService : SignInService, private router: Router,private dataService : DataService){}
+  constructor(private signInService : SignInService, private router: Router){}
 
   ngDoCheck(){
     if(sessionStorage.getItem('access_token') == null){
