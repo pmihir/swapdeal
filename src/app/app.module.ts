@@ -1,87 +1,96 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RegistrationComponent } from './authentication/registration/registration.component';
-import {FormGroup, FormControl} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { SignupFormComponent } from './authentication/signup-form/signup-form.component';
-import { RegistrationService } from './authentication/Services/registration.service';
-import { UriService } from './common/uri-service.service';
-import { LayoutComponent } from './layout/layout.component';
-import {ScrollPanelModule} from 'primeng/scrollpanel';
-import {SidebarModule} from 'primeng/sidebar';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotifierModule, NotifierOptions } from 'angular-notifier';
-import { NgxSpinnerModule} from 'ngx-spinner';
-import {AuthInterceptor} from './auth.interceptor';
-import { SocialLoginModule, AuthServiceConfig , AuthService} from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { RegistrationComponent } from "./authentication/registration/registration.component";
+import { FormGroup, FormControl } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { SignupFormComponent } from "./authentication/signup-form/signup-form.component";
+import { RegistrationService } from "./authentication/Services/registration.service";
+import { UriService } from "./common/uri-service.service";
+import { LayoutComponent } from "./layout/layout.component";
+import { ScrollPanelModule } from "primeng/scrollpanel";
+import { SidebarModule } from "primeng/sidebar";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { NotifierModule, NotifierOptions } from "angular-notifier";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { AuthInterceptor } from "./auth.interceptor";
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  AuthService,
+} from "angularx-social-login";
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angularx-social-login";
 // import { ResetpasswordComponent } from './authentication/resetpassword/resetpassword.component';
-import { ResponseResetPasswordComponent } from './authentication/response-reset-password/response-reset-password.component';
-import {CarouselModule} from 'primeng/carousel';
-import {ButtonModule} from 'primeng/button';
-import { RangePipe } from './dashboard/range.pipe';
-import { FooterComponent } from './footer/footer.component';
-import { AuthenticationModule } from './authentication/authentication.module';
-import { StoreComponent } from './store/store.component';
-import {ListboxModule} from 'primeng/listbox';
-import {SliderModule} from 'primeng/slider';
+import { ResponseResetPasswordComponent } from "./authentication/response-reset-password/response-reset-password.component";
+import { CarouselModule } from "primeng/carousel";
+import { ButtonModule } from "primeng/button";
+import { RangePipe } from "./dashboard/range.pipe";
+import { FooterComponent } from "./footer/footer.component";
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { StoreComponent } from "./store/store.component";
+import { ListboxModule } from "primeng/listbox";
+import { SliderModule } from "primeng/slider";
+import { ProductDetailsComponent } from "./product-details/product-details.component";
+import { DialogModule } from "primeng/dialog";
 
 const customNotifierOptions: NotifierOptions = {
   position: {
-		horizontal: {
-			position: 'right',
-			distance: 12
-		},
-		vertical: {
-			position: 'top',
-			distance: 12,
-			gap: 10
-		}
-	},
-  theme: 'material',
+    horizontal: {
+      position: "right",
+      distance: 12,
+    },
+    vertical: {
+      position: "top",
+      distance: 12,
+      gap: 10,
+    },
+  },
+  theme: "material",
   behaviour: {
     autoHide: 3000,
-    onClick: 'hide',
-    onMouseover: 'pauseAutoHide',
+    onClick: "hide",
+    onMouseover: "pauseAutoHide",
     showDismissButton: true,
-    stacking: 4
+    stacking: 4,
   },
   animations: {
     enabled: true,
     show: {
-      preset: 'slide',
+      preset: "slide",
       speed: 300,
-      easing: 'ease'
+      easing: "ease",
     },
     hide: {
-      preset: 'fade',
+      preset: "fade",
       speed: 300,
-      easing: 'ease',
-      offset: 50
+      easing: "ease",
+      offset: 50,
     },
     shift: {
       speed: 300,
-      easing: 'ease'
+      easing: "ease",
     },
-    overlap: 150
-  }
+    overlap: 150,
+  },
 };
 
-export function socialConfigs() {  
-  const config = new AuthServiceConfig(  
-    [    
-      {  
-        id: GoogleLoginProvider.PROVIDER_ID,  
-        provider: new GoogleLoginProvider('36129637313-7i4fm11ubsqd6pk8qhh7jv3n8cvjgl04.apps.googleusercontent.com')  
-      }  
-    ]  
-  );  
-  return config;  
-}  
+export function socialConfigs() {
+  const config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(
+        "36129637313-7i4fm11ubsqd6pk8qhh7jv3n8cvjgl04.apps.googleusercontent.com"
+      ),
+    },
+  ]);
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -91,6 +100,7 @@ export function socialConfigs() {
     RangePipe,
     FooterComponent,
     StoreComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,17 +117,18 @@ export function socialConfigs() {
     ButtonModule,
     AuthenticationModule,
     ListboxModule,
-    SliderModule
+    SliderModule,
+    DialogModule,
   ],
   providers: [
     UriService,
     AuthInterceptor,
     AuthService,
     {
-      provide: AuthServiceConfig,  
-      useFactory: socialConfigs 
+      provide: AuthServiceConfig,
+      useFactory: socialConfigs,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

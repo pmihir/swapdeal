@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { DashboardService } from './dashboard.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Observable, timer, interval, Subscription } from 'rxjs';
-import { take, map } from 'rxjs/operators';
-import { CountDownService } from './count-down.service';
+import { Component, OnInit } from "@angular/core";
+import { DashboardService } from "./dashboard.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Observable, timer, interval, Subscription } from "rxjs";
+import { take, map } from "rxjs/operators";
+import { CountDownService } from "./count-down.service";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent implements OnInit {
-
   showData: boolean = false;
   newProductDisplay: any[] = [];
   displayIndex = 0;
@@ -28,9 +27,11 @@ export class DashboardComponent implements OnInit {
   topSellDisplay: any[];
   arr = Array;
 
-  constructor(private dashboardService: DashboardService, private spinner: NgxSpinnerService, private countDownService: CountDownService) {
-
-  }
+  constructor(
+    private dashboardService: DashboardService,
+    private spinner: NgxSpinnerService,
+    private countDownService: CountDownService
+  ) {}
 
   ngOnInit(): void {
     this.getNewProductData();
@@ -40,58 +41,70 @@ export class DashboardComponent implements OnInit {
   countdownTimer() {
     this.countDownService.getCounter(this.tick).subscribe(() => {
       this.hours = Math.floor(this.counter / 3600);
-      this.minutes = Math.floor(this.counter % 3600 / 60);
-      this.seconds = Math.floor(this.counter % 3600 % 60);
+      this.minutes = Math.floor((this.counter % 3600) / 60);
+      this.seconds = Math.floor((this.counter % 3600) % 60);
       this.counter--;
-    })
+    });
   }
 
   next(dataCategory) {
     this.displayIndex += 1;
     if (dataCategory == "NewProduct") {
-      if (this.currentProduct.length <= (this.displayIndex * this.displaySize)) {
+      if (this.currentProduct.length <= this.displayIndex * this.displaySize) {
         this.newProductDisplay = this.currentProduct.slice(0, this.displaySize);
         this.displayIndex = 0;
-      }
-      else {
+      } else {
         const start = this.displayIndex * this.displaySize;
-        this.newProductDisplay = this.currentProduct.slice(start, (start + this.displaySize));
+        this.newProductDisplay = this.currentProduct.slice(
+          start,
+          start + this.displaySize
+        );
       }
-    }
-    else {
-      if (this.topSells.length <= (this.displayIndex * this.displaySize)) {
+    } else {
+      if (this.topSells.length <= this.displayIndex * this.displaySize) {
         this.topSellDisplay = this.topSells.slice(0, this.displaySize);
         this.displayIndex = 0;
-      }
-      else {
+      } else {
         const start = this.displayIndex * this.displaySize;
-        this.topSellDisplay = this.topSells.slice(start, (start + this.displaySize));
+        this.topSellDisplay = this.topSells.slice(
+          start,
+          start + this.displaySize
+        );
       }
     }
   }
 
   prev(dataCategory) {
     this.displayIndex -= 1;
-    if(dataCategory == "NewProduct"){
+    if (dataCategory == "NewProduct") {
       if (this.displayIndex < 0) {
-        this.displayIndex = (this.currentProduct.length / this.displaySize) - 1;
+        this.displayIndex = this.currentProduct.length / this.displaySize - 1;
         const start = this.displayIndex * this.displaySize;
-        this.newProductDisplay = this.currentProduct.slice(start, (start + this.displaySize));
-      }
-      else {
+        this.newProductDisplay = this.currentProduct.slice(
+          start,
+          start + this.displaySize
+        );
+      } else {
         const start = this.displayIndex * this.displaySize;
-        this.newProductDisplay = this.currentProduct.slice(start, (start + this.displaySize));
+        this.newProductDisplay = this.currentProduct.slice(
+          start,
+          start + this.displaySize
+        );
       }
-    }
-    else{
+    } else {
       if (this.displayIndex < 0) {
-        this.displayIndex = (this.topSells.length / this.displaySize) - 1;
+        this.displayIndex = this.topSells.length / this.displaySize - 1;
         const start = this.displayIndex * this.displaySize;
-        this.topSellDisplay = this.topSells.slice(start, (start + this.displaySize));
-      }
-      else {
+        this.topSellDisplay = this.topSells.slice(
+          start,
+          start + this.displaySize
+        );
+      } else {
         const start = this.displayIndex * this.displaySize;
-        this.topSellDisplay = this.topSells.slice(start, (start + this.displaySize));
+        this.topSellDisplay = this.topSells.slice(
+          start,
+          start + this.displaySize
+        );
       }
     }
   }
@@ -106,9 +119,11 @@ export class DashboardComponent implements OnInit {
         this.newProductDisplay = this.currentProduct.slice(0, this.displaySize);
         this.getTopSellData();
         this.spinner.hide();
-      }, (error) => {
+      },
+      (error) => {
         console.log(error);
-      })
+      }
+    );
   }
 
   getTopSellData() {
@@ -123,7 +138,7 @@ export class DashboardComponent implements OnInit {
       if (parseInt(a.rating) > parseInt(b.rating)) return 1;
     });
     this.topSells = this.topSells.reverse().slice(0, 12);
-    this.topSellDisplay = this.topSells.slice(0,this.displaySize);
+    this.topSellDisplay = this.topSells.slice(0, this.displaySize);
   }
 
   changeProduct(category) {

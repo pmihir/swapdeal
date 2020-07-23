@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Route } from '@angular/compiler/src/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { PagerService } from './pager.service';
-import { StoreService } from './store.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, OnInit } from "@angular/core";
+import { Route } from "@angular/compiler/src/core";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { PagerService } from "./pager.service";
+import { StoreService } from "./store.service";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
-  selector: 'app-store',
-  templateUrl: './store.component.html',
-  styleUrls: ['./store.component.css']
+  selector: "app-store",
+  templateUrl: "./store.component.html",
+  styleUrls: ["./store.component.css"],
 })
 export class StoreComponent implements OnInit {
-  
   categorySelected: string;
   productArray: any[];
   categoryFilterArray: any[] = [];
@@ -24,7 +23,7 @@ export class StoreComponent implements OnInit {
   sortCategory = [
     { id: 0, label: "Select" },
     { id: 1, label: "High To Low" },
-    { id: 2, label: "Low To High" }
+    { id: 2, label: "Low To High" },
   ];
   selected: number = 0;
   pager: any = {};
@@ -33,13 +32,19 @@ export class StoreComponent implements OnInit {
   resultTemp: any[];
   brandDict = new Object();
   isClicked = [];
-  selectedIndex : number = 0;
+  selectedIndex: number = 0;
 
-  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private router: Router, private pagerService: PagerService, private storeService: StoreService) { }
+  constructor(
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private pagerService: PagerService,
+    private storeService: StoreService
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.categorySelected = params.get('category');
+      this.categorySelected = params.get("category");
       this.getProductData();
     });
   }
@@ -54,8 +59,7 @@ export class StoreComponent implements OnInit {
           let temp = this.productArray[i].category;
           if (!(temp in this.hash)) {
             this.hash[temp] = 1;
-          }
-          else {
+          } else {
             this.hash[temp] += 1;
           }
         }
@@ -63,8 +67,7 @@ export class StoreComponent implements OnInit {
           let tempBrand = this.productArray[j].brand;
           if (!(tempBrand in this.brandDict)) {
             this.brandDict[tempBrand] = 1;
-          }
-          else {
+          } else {
             this.brandDict[tempBrand] += 1;
           }
         }
@@ -79,7 +82,10 @@ export class StoreComponent implements OnInit {
 
   setPage(page: number) {
     this.pager = this.pagerService.getPager(this.resultTemp.length, page);
-    this.displayUI = this.resultTemp.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.displayUI = this.resultTemp.slice(
+      this.pager.startIndex,
+      this.pager.endIndex + 1
+    );
   }
 
   selectOption(id: number) {
@@ -88,8 +94,7 @@ export class StoreComponent implements OnInit {
         if (parseInt(a.price) > parseInt(b.price)) return -1;
         if (parseInt(a.price) < parseInt(b.price)) return 1;
       });
-    }
-    else {
+    } else {
       this.resultTemp.sort(function (a, b) {
         if (parseInt(a.price) < parseInt(b.price)) return -1;
         if (parseInt(a.price) > parseInt(b.price)) return 1;
@@ -102,21 +107,21 @@ export class StoreComponent implements OnInit {
     if (key === undefined) {
       this.minRange = e.values[0];
       this.maxRange = e.values[1];
-    }
-    else {
-      if (type == 'category') {
+    } else {
+      if (type == "category") {
         if (this.selectedCategory.includes(key)) {
-          this.selectedCategory = this.selectedCategory.filter(value => value != key);
-        }
-        else {
+          this.selectedCategory = this.selectedCategory.filter(
+            (value) => value != key
+          );
+        } else {
           this.selectedCategory.push(key);
         }
-      }
-      else if (type == "brand") {
+      } else if (type == "brand") {
         if (this.selectedBrand.includes(key)) {
-          this.selectedBrand = this.selectedBrand.filter(value => value != key);
-        }
-        else {
+          this.selectedBrand = this.selectedBrand.filter(
+            (value) => value != key
+          );
+        } else {
           this.selectedBrand.push(key);
         }
       }
@@ -126,30 +131,53 @@ export class StoreComponent implements OnInit {
   resultArray() {
     if (this.selectedBrand.length != 0 && this.selectedCategory.length == 0) {
       this.displayUI = this.productArray.filter((item) => {
-        return (this.selectedBrand.includes(item.brand) && (parseInt(item.price) >= this.minRange) && parseInt(item.price) <= this.maxRange);
-      })
-    }
-    else if (this.selectedBrand.length == 0 && this.selectedCategory.length != 0) {
-      this.displayUI = this.productArray.filter((item) => {
-        return (this.selectedCategory.includes(item.category) && (parseInt(item.price) >= this.minRange) && parseInt(item.price) <= this.maxRange);
+        return (
+          this.selectedBrand.includes(item.brand) &&
+          parseInt(item.price) >= this.minRange &&
+          parseInt(item.price) <= this.maxRange
+        );
       });
-    }
-    else if(this.selectedBrand.length != 0 && this.selectedCategory.length != 0){
+    } else if (
+      this.selectedBrand.length == 0 &&
+      this.selectedCategory.length != 0
+    ) {
       this.displayUI = this.productArray.filter((item) => {
-        return (this.selectedBrand.includes(item.brand) && this.selectedCategory.includes(item.category) && (parseInt(item.price) >= this.minRange) && parseInt(item.price) <= this.maxRange);
-      })
-    }
-    else {
+        return (
+          this.selectedCategory.includes(item.category) &&
+          parseInt(item.price) >= this.minRange &&
+          parseInt(item.price) <= this.maxRange
+        );
+      });
+    } else if (
+      this.selectedBrand.length != 0 &&
+      this.selectedCategory.length != 0
+    ) {
       this.displayUI = this.productArray.filter((item) => {
-        return (parseInt(item.price) >= this.minRange && parseInt(item.price) <= this.maxRange);
-      })
+        return (
+          this.selectedBrand.includes(item.brand) &&
+          this.selectedCategory.includes(item.category) &&
+          parseInt(item.price) >= this.minRange &&
+          parseInt(item.price) <= this.maxRange
+        );
+      });
+    } else {
+      this.displayUI = this.productArray.filter((item) => {
+        return (
+          parseInt(item.price) >= this.minRange &&
+          parseInt(item.price) <= this.maxRange
+        );
+      });
     }
     this.resultTemp = this.displayUI;
     this.setPage(1);
   }
 
-  setIndex(index : number){
-    this.selectedIndex = index;    
+  setIndex(index: number) {
+    this.selectedIndex = index;
   }
 
+  productDetail(productId: any) {
+    console.log(productId);
+    this.router.navigate(["/product-details", productId]);
+  }
 }

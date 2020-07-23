@@ -1,49 +1,60 @@
-
-
+<app-layout></app-layout>
 <div class="section">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="shop">
           <div class="shop-img">
-            <img src="../../assets/shop01.png" alt="">
+            <img src="../../assets/shop01.png" alt="" />
           </div>
           <div class="shop-body">
             <h3>Electronics</h3>
-            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="shop">
           <div class="shop-img">
-            <img src="../../assets/kitchen1.jpeg" height="170px" alt="">
+            <img src="../../assets/kitchen1.jpeg" height="170px" alt="" />
           </div>
           <div class="shop-body">
-            <h3>Home &<br>Kitchen</h3>
-            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            <h3>Home &<br />Kitchen</h3>
+            <a href="#" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="shop">
           <div class="shop-img">
-            <img src="../../assets/Health  Beauty Products.jpg" height="170px" alt="">
+            <img
+              src="../../assets/Health  Beauty Products.jpg"
+              height="170px"
+              alt=""
+            />
           </div>
           <div class="shop-body">
-            <h3>Beauty &<br>Health</h3>
-            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            <h3>Beauty &<br />Health</h3>
+            <a href="#" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="shop">
           <div class="shop-img">
-            <img src="../../assets/books and music.jpg" height="170px" alt="">
+            <img src="../../assets/books and music.jpg" height="170px" alt="" />
           </div>
           <div class="shop-body">
-            <h3>Books &<br>Music</h3>
-            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            <h3>Books &<br />Music</h3>
+            <a href="#" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -54,10 +65,38 @@
           <h3 class="title">New Products</h3>
           <div class="section-nav">
             <ul class="section-tab-nav tab-nav">
-              <li><a data-toggle="tab" href="#tab1" (click)="changeProduct('Laptop')">Laptops</a></li>
-              <li><a data-toggle="tab" (click)="changeProduct('Smartphones')" href="#tab2">Smartphones</a></li>
-              <li><a data-toggle="tab" (click)="changeProduct('Sports')" href="#tab3">Sports</a></li>
-              <li><a data-toggle="tab" (click)="changeProduct('Accessories')" href="#tab4">Accessories</a></li>
+              <li>
+                <a
+                  data-toggle="tab"
+                  href="#tab1"
+                  (click)="changeProduct('Laptop')"
+                  >Laptops</a
+                >
+              </li>
+              <li>
+                <a
+                  data-toggle="tab"
+                  (click)="changeProduct('Smartphones')"
+                  href="#tab2"
+                  >Smartphones</a
+                >
+              </li>
+              <li>
+                <a
+                  data-toggle="tab"
+                  (click)="changeProduct('Sports')"
+                  href="#tab3"
+                  >Sports</a
+                >
+              </li>
+              <li>
+                <a
+                  data-toggle="tab"
+                  (click)="changeProduct('Accessories')"
+                  href="#tab4"
+                  >Accessories</a
+                >
+              </li>
             </ul>
           </div>
         </div>
@@ -67,38 +106,59 @@
       <div class="col-md-3" *ngFor="let product of newProductDisplay">
         <div class="product">
           <div class="product-img">
-            <img src="{{product.image}}" style="width: 100%;" alt="">
+            <img src="{{ product.image }}" style="width: 100%;" alt="" />
           </div>
           <div class="product-body">
-            <p class="product-category">{{product.category}}</p>
-            <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
-            <h4 class="product-price">{{product.discountPrice}} <del class="product-old-price">{{product.price}}</del>
+            <p class="product-category">{{ product.category }}</p>
+            <h3 class="product-name">
+              <a href="#">{{ product.name }}</a>
+            </h3>
+            <h4 class="product-price">
+              {{ product.discountPrice }}
+              <del class="product-old-price">{{ product.price }}</del>
             </h4>
             <div class="product-rating">
-              <i *ngFor="let n of product.rating | range" class="fa fa-star" style="color:#D10024;"></i>
+              <i
+                *ngFor="let n of product.rating | range"
+                class="fa fa-star"
+                style="color: #d10024;"
+              ></i>
             </div>
             <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
-                  wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to
-                  compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+              <button class="add-to-wishlist">
+                <i class="fa fa-heart-o"></i
+                ><span class="tooltipp">add to wishlist</span>
+              </button>
+              <button class="add-to-compare">
+                <i class="fa fa-exchange"></i
+                ><span class="tooltipp">add to compare</span>
+              </button>
+              <button class="quick-view">
+                <i class="fa fa-eye"></i
+                ><span class="tooltipp">quick view</span>
+              </button>
             </div>
           </div>
           <div class="add-to-cart">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            <button class="add-to-cart-btn">
+              <i class="fa fa-shopping-cart"></i> add to cart
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="slick-float">
-        <button class="slick-prev slick-arrow" (click)="prev('NewProduct')"></button>
-        <button class="slick-next slick-arrow" (click)="next('NewProduct')"></button>
+        <button
+          class="slick-prev slick-arrow"
+          (click)="prev('NewProduct')"
+        ></button>
+        <button
+          class="slick-next slick-arrow"
+          (click)="next('NewProduct')"
+        ></button>
       </div>
     </div>
-    
-    
   </div>
 </div>
 <div id="hot-deal" class="section">
@@ -117,19 +177,19 @@
             </li>
             <li>
               <div>
-                <h3>{{hours}}</h3>
+                <h3>{{ hours }}</h3>
                 <span>Hours</span>
               </div>
             </li>
             <li>
               <div>
-                <h3>{{minutes}}</h3>
+                <h3>{{ minutes }}</h3>
                 <span>Mins</span>
               </div>
             </li>
             <li>
               <div>
-                <h3>{{seconds}}</h3>
+                <h3>{{ seconds }}</h3>
                 <span>Secs</span>
               </div>
             </li>
@@ -145,7 +205,6 @@
   <!-- /container -->
 </div>
 
-
 <div class="section">
   <div class="container">
     <div class="row">
@@ -159,40 +218,68 @@
       <div class="col-md-3" *ngFor="let product of topSellDisplay">
         <div class="product">
           <div class="product-img">
-            <img src="{{product.image}}" style="width: 100%;" alt="">
+            <img src="{{ product.image }}" style="width: 100%;" alt="" />
           </div>
           <div class="product-body">
-            <p class="product-category">{{product.category}}</p>
-            <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
-            <h4 class="product-price">{{product.discountPrice}} <del class="product-old-price">{{product.price}}</del>
+            <p class="product-category">{{ product.category }}</p>
+            <h3 class="product-name">
+              <a href="#">{{ product.name }}</a>
+            </h3>
+            <h4 class="product-price">
+              {{ product.discountPrice }}
+              <del class="product-old-price">{{ product.price }}</del>
             </h4>
-            <div  class="product-rating">
-              <i *ngFor="let n of product.rating | range" class="fa fa-star" style="color:#D10024;"></i>
+            <div class="product-rating">
+              <i
+                *ngFor="let n of product.rating | range"
+                class="fa fa-star"
+                style="color: #d10024;"
+              ></i>
             </div>
             <div class="product-btns">
-              <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
-                  wishlist</span></button>
-              <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to
-                  compare</span></button>
-              <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+              <button class="add-to-wishlist">
+                <i class="fa fa-heart-o"></i
+                ><span class="tooltipp">add to wishlist</span>
+              </button>
+              <button class="add-to-compare">
+                <i class="fa fa-exchange"></i
+                ><span class="tooltipp">add to compare</span>
+              </button>
+              <button class="quick-view">
+                <i class="fa fa-eye"></i
+                ><span class="tooltipp">quick view</span>
+              </button>
             </div>
           </div>
           <div class="add-to-cart">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            <button class="add-to-cart-btn">
+              <i class="fa fa-shopping-cart"></i> add to cart
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="slick-float">
-        <button class="slick-prev slick-arrow" (click)="prev('TopSells')"></button>
-        <button class="slick-next slick-arrow" (click)="next('TopSells')"></button>
+        <button
+          class="slick-prev slick-arrow"
+          (click)="prev('TopSells')"
+        ></button>
+        <button
+          class="slick-next slick-arrow"
+          (click)="next('TopSells')"
+        ></button>
       </div>
     </div>
   </div>
 </div>
 
 <app-footer></app-footer>
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-spin-clockwise">
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-clockwise"
+>
   <p style="font-size: 20px; color: white;">Loading...</p>
 </ngx-spinner>

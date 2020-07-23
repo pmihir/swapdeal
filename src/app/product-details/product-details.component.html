@@ -1,0 +1,420 @@
+<div class="section">
+  <div class="container-fluid">
+    <div class="row flex-container">
+      <div class="col-md-4">
+        <div id="product-main-img" style="position: fixed;">
+          <img
+            src="{{ tempProduct.image }}"
+            style="position: absolute; width: 400px; height: 400px;"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="product-details">
+              <h2
+                class="product-name"
+                style="
+                  font-family: Tahoma, Geneva, sans-serif;
+                  font-size: 20px;
+                  font-weight: 600;
+                "
+              >
+                {{ tempProduct.productName[0].title }}
+              </h2>
+              <div>
+                <div class="product-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+                <a href="#" class="review-link"
+                  >10 Review(s) | Add your review</a
+                >
+              </div>
+              <div>
+                <h3 class="product-price">
+                  {{ tempProduct.discountedPrice }} RS<del
+                    class="product-old-price"
+                    >{{ tempProduct.price }}</del
+                  >
+                </h3>
+                <span class="product-available">In Stock</span>
+              </div>
+              <!-- <div>
+                <ul
+                  style="font-size: 14px; padding-left: 15px; text-align: justify;"
+                >
+                  <li *ngFor="let key of objectKeys(tempProduct.description)">
+                    {{ key }} : {{ tempProduct.description[key] }}
+                  </li>
+                </ul>
+              </div> -->
+              <div class="product-options">
+                <label
+                  >Size
+                  <select class="input-select">
+                    <option value="0">X</option>
+                  </select>
+                </label>
+                <!-- <select (change)="selectOption($event.target.value)" [(ngModel)]="selected" class="input-select">
+                                <option *ngFor="let opt of sortCategory" [value]="opt.id">{{opt.label}}</option>
+                              </select> -->
+                <label
+                  >Color
+                  <select class="input-select">
+                    <option
+                      *ngFor="let colors of tempProduct.color"
+                      [value]="colors.color"
+                      >{{ colors.color }}</option
+                    >
+                  </select></label
+                >
+              </div>
+              <div class="add-to-cart">
+                <div class="qty-label">
+                  Qty
+                  <div class="input-number">
+                    <input type="number" />
+                    <span class="qty-up">+</span>
+                    <span class="qty-down">-</span>
+                  </div>
+                </div>
+                <!-- <button class="add-to-cart-btn">
+                  <i class="fa fa-shopping-cart"></i> add to cart
+                </button> -->
+              </div>
+              <!-- <ul class="product-btns">
+                <li>
+                  <a href="#" style="color: black;"
+                    ><i class="fa fa-heart-o"></i> add to wishlist</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-exchange"></i> add to compare</a>
+                </li>
+              </ul> -->
+              <!-- <ul class="product-links">
+                <li>Category:</li>
+                <li><a href="#" style="color: black;">Headphones</a></li>
+                <li><a href="#" style="color: black;">Accessories</a></li>
+              </ul> -->
+              <ul class="product-offers">
+                <li class="product-offer">
+                  <h6 class="bank-offer active-link">Bank Offer</h6>
+                  <span class="offer-details"
+                    >10% Instant Discount on ICICI Bank Credit and Debit
+                    Cards</span
+                  >
+                </li>
+                <li class="product-offer">
+                  <h6 class="bank-offer active-link">Bank Offer</h6>
+                  <span class="offer-details"
+                    >10% off with Axis Bank Buzz Card</span
+                  >
+                </li>
+                <li class="product-offer">
+                  <h6 class="bank-offer active-link">Bank offer</h6>
+                  <span class="offer-details"
+                    >5% Unlimited Cashback on Swapdeal Axis Bank Card</span
+                  >
+                </li>
+                <li class="product-offer">
+                  <h6 class="bank-offer active-link">Special Price</h6>
+                  <span class="offer-details"
+                    >Get extra 5% off(price inclusive of discount)</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="add-product">
+              <i
+                class="fa fa-map-marker"
+                style="font-size: 20px; margin-right: 10px; color: #d10024;"
+              ></i
+              ><span class="location-marker">Select Delievery Location</span>
+              <div class="address-input">
+                <select class="input-select">
+                  <option>Hinjewadi PG</option>
+                </select>
+              </div>
+              <div class="wish-compare">
+                <ul class="product-btns">
+                  <li>
+                    <a href="#" style="color: black;"
+                      ><i class="fa fa-heart-o"></i> add to wishlist</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-exchange"></i> add to compare</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="checkbox-filter">
+                <div class="input-checkbox">
+                  <input type="checkbox" id="gift" />
+                  <label for="gift">
+                    <span></span>
+                    Add gift options
+                  </label>
+                </div>
+                <div class="wish-compare" style="text-align: center;">
+                  <button class="add-to-cart-btn">
+                    <i class="fa fa-shopping-cart"></i> add to cart
+                  </button>
+                </div>
+                <div class="wish-compare" style="text-align: center;">
+                  <button class="add-to-cart-btn">
+                    <i class="fa fa-shopping-cart"></i> Buy Now
+                  </button>
+                </div>
+                <div class="wish-compare" style="text-align: center;">
+                  <ul class="product-links">
+                    <li>Share:</li>
+                    <li>
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-envelope"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="prdouct-description">
+              <h5>
+                Product Description
+              </h5>
+              <ul
+                style="
+                  font-size: 14px;
+                  padding-left: 15px;
+                  text-align: justify;
+                "
+              >
+                <li *ngFor="let key of objectKeys(tempProduct.description)">
+                  {{ key }} : {{ tempProduct.description[key] }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="prdouct-description">
+          <h5>Product Review</h5>
+        </div>
+
+        <div class="row" style="margin-left: 5px;">
+          <div class="col-md-5">
+            <div id="rating">
+              <div class="rating-avg">
+                <span>4.5</span>
+                <div class="rating-stars">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+              </div>
+              <ul class="rating">
+                <li>
+                  <div class="rating-stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="rating-progress">
+                    <div style="width: 80%;"></div>
+                  </div>
+                  <span class="sum">3</span>
+                </li>
+                <li>
+                  <div class="rating-stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <div class="rating-progress">
+                    <div style="width: 60%;"></div>
+                  </div>
+                  <span class="sum">2</span>
+                </li>
+                <li>
+                  <div class="rating-stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <div class="rating-progress">
+                    <div></div>
+                  </div>
+                  <span class="sum">0</span>
+                </li>
+                <li>
+                  <div class="rating-stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <div class="rating-progress">
+                    <div></div>
+                  </div>
+                  <span class="sum">0</span>
+                </li>
+                <li>
+                  <div class="rating-stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                  <div class="rating-progress">
+                    <div></div>
+                  </div>
+                  <span class="sum">0</span>
+                </li>
+              </ul>
+            </div>
+            <div class="review-btn">
+              <button
+                class="add-to-cart-btn"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="showModal()"
+              >
+                Add Review
+              </button>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div id="reviews">
+              <ul class="reviews">
+                <li *ngFor="let review of tempProduct.reviews">
+                  <div class="review-heading">
+                    <h5 class="name">{{ review.name }}</h5>
+                    <p class="date">{{ review.date }}</p>
+                    <div class="review-rating">
+                      <i
+                        class="fa fa-star"
+                        *ngFor="let n of review.rating | range"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="review-body">
+                    <p>
+                      {{ review.description }}
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              <ul class="reviews-pagination">
+                <li class="active">1</li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li>
+                  <a href="#"><i class="fa fa-angle-right"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  [class.show]="displayBasic"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Review</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="review-form">
+          <form class="review-form">
+            <input class="input" type="text" placeholder="Your Name" />
+            <input class="input" type="email" placeholder="Your Email" />
+            <textarea class="input" placeholder="Your Review"></textarea>
+            <div class="input-rating">
+              <span>Your Rating: </span>
+              <div class="stars">
+                <input id="star5" name="rating" value="5" type="radio" /><label
+                  for="star5"
+                ></label>
+                <input id="star4" name="rating" value="4" type="radio" /><label
+                  for="star4"
+                ></label>
+                <input id="star3" name="rating" value="3" type="radio" /><label
+                  for="star3"
+                ></label>
+                <input id="star2" name="rating" value="2" type="radio" /><label
+                  for="star2"
+                ></label>
+                <input id="star1" name="rating" value="1" type="radio" /><label
+                  for="star1"
+                ></label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          style="background-color: #d10024; border: none;"
+          class="btn btn-primary"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

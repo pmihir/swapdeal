@@ -1,3 +1,4 @@
+<!-- <app-layout></app-layout> -->
 <div class="section">
   <div class="container">
     <div class="row">
@@ -6,43 +7,67 @@
           <h3 class="aside-title">Categories</h3>
           <div class="checkbox-filter">
             <div class="input-checkbox" *ngFor="let key of objectKeys(hash)">
-              <input type="checkbox" (change)="filterFunc($event, key, 'category')" id="{{key}}">
-              <label for="{{key}}">
+              <input
+                type="checkbox"
+                (change)="filterFunc($event, key, 'category')"
+                id="{{ key }}"
+              />
+              <label for="{{ key }}">
                 <span></span>
-                {{key}}
-                <small>[{{hash[key]}}]</small>
+                {{ key }}
+                <small>[{{ hash[key] }}]</small>
               </label>
             </div>
           </div>
         </div>
         <div class="aside">
           <h3 class="aside-title">Price</h3>
-          <h3 class="aside-title">{{rangeValues[0] + ' - ' + rangeValues[1]}}</h3>
-          <p-slider (onChange)="filterFunc($event)" [(ngModel)]="rangeValues" [max]="100000" [style]="{'width':'10em'}"
-            [range]="true"></p-slider>
+          <h3 class="aside-title">
+            {{ rangeValues[0] + " - " + rangeValues[1] }}
+          </h3>
+          <p-slider
+            (onChange)="filterFunc($event)"
+            [(ngModel)]="rangeValues"
+            [max]="100000"
+            [style]="{ width: '10em' }"
+            [range]="true"
+          ></p-slider>
         </div>
         <div class="aside">
           <h3 class="aside-title">Brand</h3>
           <div class="checkbox-filter">
-            <div class="input-checkbox" *ngFor="let key of objectKeys(brandDict) | slice: 0:4">
-              <input type="checkbox" (change)="filterFunc($event, key, 'brand')" id="{{key}}">
-              <label for="{{key}}">
+            <div
+              class="input-checkbox"
+              *ngFor="let key of objectKeys(brandDict) | slice: 0:4"
+            >
+              <input
+                type="checkbox"
+                (change)="filterFunc($event, key, 'brand')"
+                id="{{ key }}"
+              />
+              <label for="{{ key }}">
                 <span></span>
-                {{key}}
-                <small>[{{brandDict[key]}}]</small>
+                {{ key }}
+                <small>[{{ brandDict[key] }}]</small>
               </label>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div id="store" class="col-md-9">
         <div class="store-filter clearfix">
           <div class="store-sort">
             <label>
               Sort By :
-              <select (change)="selectOption($event.target.value)" [(ngModel)]="selected" class="input-select">
-                <option *ngFor="let opt of sortCategory" [value]="opt.id">{{opt.label}}</option>
+              <select
+                (change)="selectOption($event.target.value)"
+                [(ngModel)]="selected"
+                class="input-select"
+              >
+                <option *ngFor="let opt of sortCategory" [value]="opt.id">{{
+                  opt.label
+                }}</option>
               </select>
             </label>
             <label>
@@ -58,27 +83,45 @@
           <div class="col-md-4" *ngFor="let product of displayUI">
             <div class="product">
               <div class="product-img">
-                <img src="{{product.image}}" style="width: 100%;" alt="">
+                <img src="{{ product.image }}" style="width: 100%;" alt="" />
               </div>
               <div class="product-body">
-                <p class="product-category">{{product.category}}</p>
-                <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
-                <h4 class="product-price">{{product.discountPrice}} <del
-                    class="product-old-price">{{product.price}}</del>
+                <p class="product-category">{{ product.category }}</p>
+                <h3 class="product-name">
+                  <a (click)="productDetail(product.productId)">{{
+                    product.productName[0].title
+                  }}</a>
+                </h3>
+                <h4 class="product-price">
+                  {{ product.discountPrice }}
+                  <del class="product-old-price">{{ product.price }}</del>
                 </h4>
                 <div class="product-rating">
-                  <i *ngFor="let n of product.rating | range" class="fa fa-star" style="color:#D10024;"></i>
+                  <i
+                    *ngFor="let n of product.rating | range"
+                    class="fa fa-star"
+                    style="color: #d10024;"
+                  ></i>
                 </div>
                 <div class="product-btns">
-                  <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
-                      wishlist</span></button>
-                  <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to
-                      compare</span></button>
-                  <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                  <button class="add-to-wishlist">
+                    <i class="fa fa-heart-o"></i
+                    ><span class="tooltipp">add to wishlist</span>
+                  </button>
+                  <button class="add-to-compare">
+                    <i class="fa fa-exchange"></i
+                    ><span class="tooltipp">add to compare</span>
+                  </button>
+                  <button class="quick-view">
+                    <i class="fa fa-eye"></i
+                    ><span class="tooltipp">quick view</span>
+                  </button>
                 </div>
               </div>
               <div class="add-to-cart">
-                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                <button class="add-to-cart-btn">
+                  <i class="fa fa-shopping-cart"></i> add to cart
+                </button>
               </div>
             </div>
           </div>
@@ -87,7 +130,13 @@
           <div class="store-filter clearfix">
             <span>Showing 20-100 products</span>
             <ul class="store-pagination">
-              <li [ngClass]="{'active': selectedIndex === i}" (click)="setIndex(i)" *ngFor="let page of pager.pages; let i=index;"><a (click) = "setPage(page)">{{page}}</a></li>
+              <li
+                [ngClass]="{ active: selectedIndex === i }"
+                (click)="setIndex(i)"
+                *ngFor="let page of pager.pages; let i = index"
+              >
+                <a (click)="setPage(page)">{{ page }}</a>
+              </li>
               <!-- <li><a href="#"><i class="fa fa-angle-right"></i></a></li> -->
             </ul>
           </div>
@@ -97,6 +146,11 @@
   </div>
 </div>
 <app-footer></app-footer>
-<ngx-spinner bdColor="rgba(51,51,51,0.9)" size="medium" color="#fff" type="ball-spin-clockwise">
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.9)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-clockwise"
+>
   <p style="font-size: 20px; color: white;">Loading...</p>
 </ngx-spinner>
