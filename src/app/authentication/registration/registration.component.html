@@ -1,45 +1,20 @@
 <div class="registration">
-  <div
-    class="wrapper"
-    style="background-image: url('../../assets/background4.jpg');"
-  >
+  <div class="wrapper" style="background-image: url('../../assets/background4.jpg');">
     <div class="inner-wrapper">
       <div class="inner">
         <div class="image-holder">
-          <img
-            src="../../assets/background3.jpg"
-            style="max-width: 85%;"
-            alt=""
-          />
+          <img src="../../assets/background3.jpg" alt="" />
         </div>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
           <h3>Registration Form</h3>
           <div class="form-group" style="margin-bottom: 0px;">
-            <input
-              type="text"
-              formControlName="firstName"
-              placeholder="First Name"
-              class="form-control"
-            />
-            <input
-              type="text"
-              formControlName="lastName"
-              placeholder="Last Name"
-              class="form-control"
-            />
+            <input type="text" formControlName="firstName" placeholder="First Name" class="form-control" />
+            <input type="text" formControlName="lastName" placeholder="Last Name" class="form-control" />
           </div>
           <div class="form-wrapper">
-            <input
-              type="text"
-              placeholder="Username"
-              class="form-control"
-              formControlName="userName"
-              [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
-            />
-            <div
-              *ngIf="submitted && f.userName.errors"
-              class="invalid-feedback"
-            >
+            <input type="text" placeholder="Username" class="form-control" formControlName="userName"
+              [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
               <div *ngIf="f.userName.errors.required">
                 User Name is required
               </div>
@@ -49,17 +24,9 @@
             </div>
           </div>
           <div class="form-wrapper">
-            <input
-              type="text"
-              placeholder="Email Address"
-              class="form-control"
-              formControlName="email"
-              [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"
-            />
-            <div
-              *ngIf="f.email.errors && f.email.touched"
-              class="invalid-feedback"
-            >
+            <input type="text" placeholder="Email Address" class="form-control" formControlName="email"
+              [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" />
+            <div *ngIf="f.email.errors && f.email.touched" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">
                 Enter a valid email address
@@ -67,18 +34,9 @@
             </div>
           </div>
           <div class="form-wrapper">
-            <input
-              name=""
-              class="form-control"
-              formControlName="phoneNumber"
-              placeholder="Phone number"
-              type="number"
-              [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"
-            />
-            <div
-              *ngIf="submitted && f.phoneNumber.errors"
-              class="invalid-feedback"
-            >
+            <input name="" class="form-control" formControlName="phoneNumber" placeholder="Phone number" type="number"
+              [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+            <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
               <div *ngIf="f.phoneNumber.errors.required">
                 Phone Number is required
               </div>
@@ -88,17 +46,9 @@
             </div>
           </div>
           <div class="form-wrapper">
-            <input
-              type="password"
-              placeholder="Password"
-              class="form-control"
-              formControlName="password"
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-            />
-            <div
-              *ngIf="submitted && f.password.errors"
-              class="invalid-feedback"
-            >
+            <input type="password" placeholder="Password" class="form-control" formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
               <div *ngIf="f.password.errors.pattern">
                 Enter a valid password
@@ -106,19 +56,11 @@
             </div>
           </div>
           <div class="form-wrapper">
-            <input
-              type="password"
-              formControlName="confirmPassword"
-              placeholder="Confirm Password"
-              class="form-control"
+            <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control"
               [ngClass]="{
                 'is-invalid': submitted && f.confirmPassword.errors
-              }"
-            />
-            <div
-              *ngIf="submitted && f.confirmPassword.errors"
-              class="invalid-feedback"
-            >
+              }" />
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.required">
                 Confirm Password is required
               </div>
@@ -140,7 +82,7 @@
     </div>
   </div>
 </div>
-<ngx-spinner
+<!-- <ngx-spinner
   bdColor="rgba(51,51,51,0.8)"
   size="medium"
   color="#fff"
@@ -148,5 +90,5 @@
 >
   <p style="font-size: 20px; color: white;">Loading...</p>
 </ngx-spinner>
-<notifier-container></notifier-container>
+<notifier-container></notifier-container> -->
 <!-- <signup-form *ngIf="loadSignComponent"></signup-form> -->
