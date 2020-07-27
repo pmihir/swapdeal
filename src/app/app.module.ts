@@ -38,6 +38,8 @@ import { ListboxModule } from "primeng/listbox";
 import { SliderModule } from "primeng/slider";
 import { ProductDetailsComponent } from "./product-details/product-details.component";
 import { DialogModule } from "primeng/dialog";
+import { SearchProductsComponent } from './search-products/search-products.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -101,6 +103,7 @@ export function socialConfigs() {
     FooterComponent,
     StoreComponent,
     ProductDetailsComponent,
+    SearchProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,6 +122,7 @@ export function socialConfigs() {
     ListboxModule,
     SliderModule,
     DialogModule,
+    AutoCompleteModule
   ],
   providers: [
     UriService,
@@ -131,4 +135,4 @@ export function socialConfigs() {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

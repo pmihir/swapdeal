@@ -1,4 +1,4 @@
-<header>
+<header style="padding-bottom: 75px;">
   <div id="header">
     <div class="container">
       <div class="row">
@@ -10,8 +10,11 @@
         <div class="col-md-5">
           <div class="header-search">
             <form>
-              <input type="text" class="input" placeholder="Search here" [(ngModel)]="searchKey" />
-              <button class="search-btn">
+              <p-autoComplete #name [(ngModel)]="text" [suggestions]="results" (onSelect)="getSearchProduct($event)"
+                (completeMethod)="search($event)" size="40">
+              </p-autoComplete>
+
+              <button class="search-btn" (click)="searchProducts()">
                 Search
               </button>
             </form>

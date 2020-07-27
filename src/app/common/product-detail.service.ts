@@ -6,12 +6,18 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class ProductDetailService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getNewProductDetail(productId): Observable<any> {
     console.log(productId);
     return this.http.get("http://localhost:3000/product/productDetails/", {
       params: { productId: productId },
+    });
+  }
+
+  getProductBySearch(searchKey: string): Observable<any> {
+    return this.http.get("http://localhost:3000/product/search/", {
+      params: { data: searchKey },
     });
   }
 }

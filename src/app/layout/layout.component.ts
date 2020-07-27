@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SignInService } from "../authentication/Services/sign-in.service";
 import { Router } from "@angular/router";
 import { stringify } from "querystring";
+import { ProductDetailService } from '../common/product-detail.service';
 
 @Component({
   selector: "app-layout",
@@ -22,13 +23,17 @@ export class LayoutComponent implements OnInit {
     "Men Fashion",
     "Women Fashion",
   ];
+  results: any[] = [];
+  text: string;
+  searchProductArray: any[] = [];
+  dummyArray: any[];
 
   ngOnInit() {
     this.check = "0px";
     document.getElementById("mySidebar").style.width = "0px";
   }
 
-  constructor(private signInService: SignInService, private router: Router) {}
+  constructor(private signInService: SignInService, private router: Router, private productService: ProductDetailService) { }
 
   ngDoCheck() {
     if (sessionStorage.getItem("access_token") == null) {
@@ -50,7 +55,38 @@ export class LayoutComponent implements OnInit {
     this.router.navigate(["/store", category]);
   }
 
-  // searchProducts(searchKey){
-  //   this.fetchProductService()
-  // }
+  searchProducts() {
+    // this.fetchProductService();
+    let searchKey = this.text;
+    this.router.navigate(['/searchProducts', searchKey]);
+
+  }
+  search(event) {
+    this.productService.getProductBySearch(event.query).subscribe((success) => {
+      this.searchProductArray = [];
+      this.dummyArray = success;
+      console.log(success);
+      success.forEach((hit, index) => {
+        console.log(hit);
+        this.searchProductArray.push(hit._source.name);
+      });
+      this.results = this.searchProductArray;
+      console.log(this.results);
+    }),
+      (error) => {
+        console.log(error);
+      }
+    this.text = event.query;
+  }
+
+  getSearchProduct(event) {
+    console.log(event);
+    this.dummyArray.forEach((hit, index) => {
+      console.log(hit);
+      if (hit._source.name == event) {
+        let productId = hit._source.productId;
+        this.router.navigate(["/product-details", productId]);
+      }
+    })
+  }
 }
