@@ -10,7 +10,7 @@ export class ProductDetailService {
 
   getNewProductDetail(productId): Observable<any> {
     console.log(productId);
-    return this.http.get("http://localhost:3000/product/productDetails/", {
+    return this.http.get("http://localhost:3000/productStore/productDetails/", {
       params: { productId: productId },
     });
   }

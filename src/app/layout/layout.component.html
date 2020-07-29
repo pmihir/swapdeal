@@ -10,8 +10,8 @@
         <div class="col-md-5">
           <div class="header-search">
             <form>
-              <p-autoComplete #name [(ngModel)]="text" [suggestions]="results" (onSelect)="getSearchProduct($event)"
-                (completeMethod)="search($event)" size="40">
+              <p-autoComplete #name [(ngModel)]="text" [ngModelOptions]="{standalone:true}" [suggestions]="results"
+                (onSelect)="getSearchProduct($event)" (completeMethod)="search($event)" size="40">
               </p-autoComplete>
 
               <button class="search-btn" (click)="searchProducts()">

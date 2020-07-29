@@ -1,27 +1,21 @@
+<app-layout></app-layout>
 <div class="section">
   <div class="container-fluid">
     <div class="row flex-container">
       <div class="col-md-4">
         <div id="product-main-img" style="position: fixed;">
-          <img
-            src="{{ tempProduct.image }}"
-            style="position: absolute; width: 400px; height: 400px;"
-            alt=""
-          />
+          <img src="{{ tempProduct.image }}" style="position: absolute; width: 400px; height: 400px;" alt="" />
         </div>
       </div>
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-8">
             <div class="product-details">
-              <h2
-                class="product-name"
-                style="
+              <h2 class="product-name" style="
                   font-family: Tahoma, Geneva, sans-serif;
                   font-size: 20px;
                   font-weight: 600;
-                "
-              >
+                ">
                 {{ tempProduct.productName[0].title }}
               </h2>
               <div>
@@ -32,16 +26,11 @@
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <a href="#" class="review-link"
-                  >10 Review(s) | Add your review</a
-                >
+                <a href="#" class="review-link">10 Review(s) | Add your review</a>
               </div>
               <div>
                 <h3 class="product-price">
-                  {{ tempProduct.discountedPrice }} RS<del
-                    class="product-old-price"
-                    >{{ tempProduct.price }}</del
-                  >
+                  {{ tempProduct.discountedPrice }} RS<del class="product-old-price">{{ tempProduct.price }}</del>
                 </h3>
                 <span class="product-available">In Stock</span>
               </div>
@@ -55,8 +44,7 @@
                 </ul>
               </div> -->
               <div class="product-options">
-                <label
-                  >Size
+                <label>Size
                   <select class="input-select">
                     <option value="0">X</option>
                   </select>
@@ -64,16 +52,10 @@
                 <!-- <select (change)="selectOption($event.target.value)" [(ngModel)]="selected" class="input-select">
                                 <option *ngFor="let opt of sortCategory" [value]="opt.id">{{opt.label}}</option>
                               </select> -->
-                <label
-                  >Color
+                <label>Color
                   <select class="input-select">
-                    <option
-                      *ngFor="let colors of tempProduct.color"
-                      [value]="colors.color"
-                      >{{ colors.color }}</option
-                    >
-                  </select></label
-                >
+                    <option *ngFor="let colors of tempProduct.color" [value]="colors.color">{{ colors.color }}</option>
+                  </select></label>
               </div>
               <div class="add-to-cart">
                 <div class="qty-label">
@@ -106,39 +88,28 @@
               <ul class="product-offers">
                 <li class="product-offer">
                   <h6 class="bank-offer active-link">Bank Offer</h6>
-                  <span class="offer-details"
-                    >10% Instant Discount on ICICI Bank Credit and Debit
-                    Cards</span
-                  >
+                  <span class="offer-details">10% Instant Discount on ICICI Bank Credit and Debit
+                    Cards</span>
                 </li>
                 <li class="product-offer">
                   <h6 class="bank-offer active-link">Bank Offer</h6>
-                  <span class="offer-details"
-                    >10% off with Axis Bank Buzz Card</span
-                  >
+                  <span class="offer-details">10% off with Axis Bank Buzz Card</span>
                 </li>
                 <li class="product-offer">
                   <h6 class="bank-offer active-link">Bank offer</h6>
-                  <span class="offer-details"
-                    >5% Unlimited Cashback on Swapdeal Axis Bank Card</span
-                  >
+                  <span class="offer-details">5% Unlimited Cashback on Swapdeal Axis Bank Card</span>
                 </li>
                 <li class="product-offer">
                   <h6 class="bank-offer active-link">Special Price</h6>
-                  <span class="offer-details"
-                    >Get extra 5% off(price inclusive of discount)</span
-                  >
+                  <span class="offer-details">Get extra 5% off(price inclusive of discount)</span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col-md-4">
             <div class="add-product">
-              <i
-                class="fa fa-map-marker"
-                style="font-size: 20px; margin-right: 10px; color: #d10024;"
-              ></i
-              ><span class="location-marker">Select Delievery Location</span>
+              <i class="fa fa-map-marker" style="font-size: 20px; margin-right: 10px; color: #d10024;"></i><span
+                class="location-marker">Select Delievery Location</span>
               <div class="address-input">
                 <select class="input-select">
                   <option>Hinjewadi PG</option>
@@ -147,14 +118,10 @@
               <div class="wish-compare">
                 <ul class="product-btns">
                   <li>
-                    <a href="#" style="color: black;"
-                      ><i class="fa fa-heart-o"></i> add to wishlist</a
-                    >
+                    <a href="#" style="color: black;"><i class="fa fa-heart-o"></i> add to wishlist</a>
                   </li>
                   <li>
-                    <a href="#"
-                      ><i class="fa fa-exchange"></i> add to compare</a
-                    >
+                    <a href="#"><i class="fa fa-exchange"></i> add to compare</a>
                   </li>
                 </ul>
               </div>
@@ -203,13 +170,11 @@
               <h5>
                 Product Description
               </h5>
-              <ul
-                style="
+              <ul style="
                   font-size: 14px;
                   padding-left: 15px;
                   text-align: justify;
-                "
-              >
+                ">
                 <li *ngFor="let key of objectKeys(tempProduct.description)">
                   {{ key }} : {{ tempProduct.description[key] }}
                 </li>
@@ -303,12 +268,7 @@
               </ul>
             </div>
             <div class="review-btn">
-              <button
-                class="add-to-cart-btn"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                (click)="showModal()"
-              >
+              <button class="add-to-cart-btn" data-toggle="modal" data-target="#exampleModal" (click)="showModal()">
                 Add Review
               </button>
             </div>
@@ -321,10 +281,7 @@
                     <h5 class="name">{{ review.name }}</h5>
                     <p class="date">{{ review.date }}</p>
                     <div class="review-rating">
-                      <i
-                        class="fa fa-star"
-                        *ngFor="let n of review.rating | range"
-                      ></i>
+                      <i class="fa fa-star" *ngFor="let n of review.rating | range"></i>
                     </div>
                   </div>
                   <div class="review-body">
@@ -351,25 +308,13 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  [class.show]="displayBasic"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" [class.show]="displayBasic" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Review</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -382,21 +327,11 @@
             <div class="input-rating">
               <span>Your Rating: </span>
               <div class="stars">
-                <input id="star5" name="rating" value="5" type="radio" /><label
-                  for="star5"
-                ></label>
-                <input id="star4" name="rating" value="4" type="radio" /><label
-                  for="star4"
-                ></label>
-                <input id="star3" name="rating" value="3" type="radio" /><label
-                  for="star3"
-                ></label>
-                <input id="star2" name="rating" value="2" type="radio" /><label
-                  for="star2"
-                ></label>
-                <input id="star1" name="rating" value="1" type="radio" /><label
-                  for="star1"
-                ></label>
+                <input id="star5" name="rating" value="5" type="radio" /><label for="star5"></label>
+                <input id="star4" name="rating" value="4" type="radio" /><label for="star4"></label>
+                <input id="star3" name="rating" value="3" type="radio" /><label for="star3"></label>
+                <input id="star2" name="rating" value="2" type="radio" /><label for="star2"></label>
+                <input id="star1" name="rating" value="1" type="radio" /><label for="star1"></label>
               </div>
             </div>
           </form>
@@ -406,11 +341,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button
-          type="button"
-          style="background-color: #d10024; border: none;"
-          class="btn btn-primary"
-        >
+        <button type="button" style="background-color: #d10024; border: none;" class="btn btn-primary">
           Submit
         </button>
       </div>

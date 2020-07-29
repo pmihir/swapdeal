@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private productDetailService: ProductDetailService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -25,6 +25,7 @@ export class ProductDetailsComponent implements OnInit {
       productId = params.get("productId");
       this.productDetailService.getNewProductDetail(productId).subscribe(
         (success) => {
+          console.log(success);
           this.tempProduct = success[0];
           console.log(this.tempProduct);
         },

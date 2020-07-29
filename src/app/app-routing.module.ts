@@ -13,6 +13,7 @@ import { SearchProductsComponent } from './search-products/search-products.compo
 const routes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "store/:category", component: StoreComponent },
+  { path: "dashboard", component: DashboardComponent },
   { path: "searchProducts/:searchKey", component: SearchProductsComponent },
   { path: "product-details/:productId", component: ProductDetailsComponent },
   {
