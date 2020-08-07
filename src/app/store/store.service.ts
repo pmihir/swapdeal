@@ -7,10 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class StoreService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getElectronicsCollection(category : String):Observable<any>{
-    console.log(category);
-    return this.http.get("http://localhost:3000/productStore/"+category);
+  getElectronicsCollection(category: string): Observable<any> {
+    return this.http.get("http://localhost:3000/productStore/searchCategory", {
+      params: { category: category },
+    });
   }
 }
+
+

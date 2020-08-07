@@ -40,7 +40,7 @@ export class StoreComponent implements OnInit {
     private router: Router,
     private pagerService: PagerService,
     private storeService: StoreService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -49,6 +49,8 @@ export class StoreComponent implements OnInit {
     });
   }
   getProductData() {
+    this.hash = {};
+    this.brandDict = {};
     this.spinner.show();
     this.storeService.getElectronicsCollection(this.categorySelected).subscribe(
       (success) => {
@@ -56,7 +58,8 @@ export class StoreComponent implements OnInit {
         this.displayUI = this.productArray;
         this.resultTemp = this.productArray;
         for (let i = 0; i < this.productArray.length; i++) {
-          let temp = this.productArray[i].category;
+
+          let temp = this.productArray[i].subcategory;
           if (!(temp in this.hash)) {
             this.hash[temp] = 1;
           } else {
