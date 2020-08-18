@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SignInService } from "../authentication/Services/sign-in.service";
 import { Router } from "@angular/router";
 import { stringify } from "querystring";
-import { ProductDetailService } from '../common/product-detail.service';
+import { ProductDetailService } from "../common/product-detail.service";
 
 @Component({
   selector: "app-layout",
@@ -27,19 +27,24 @@ export class LayoutComponent implements OnInit {
   text: string;
   searchProductArray: any[] = [];
   dummyArray: any[];
+  cartLength: any;
 
-  ngOnInit() {
-    this.check = "0px";
-    document.getElementById("mySidebar").style.width = "0px";
-  }
+  ngOnInit() {}
 
-  constructor(private signInService: SignInService, private router: Router, private productService: ProductDetailService) { }
+  constructor(
+    private signInService: SignInService,
+    private router: Router,
+    private productService: ProductDetailService
+  ) {}
 
   ngDoCheck() {
     if (sessionStorage.getItem("access_token") == null) {
       this.userName = "Sign In";
     } else {
-      this.userName = sessionStorage.getItem("username");
+      let userData = JSON.parse(sessionStorage.getItem("user"));
+      this.userName = userData.username;
+      this.cartLength = userData.cart.length;
+      // this.userName = sessionStorage.getItem("user.username");
     }
   }
 
@@ -58,8 +63,7 @@ export class LayoutComponent implements OnInit {
   searchProducts() {
     // this.fetchProductService();
     let searchKey = this.text;
-    this.router.navigate(['/searchProducts', searchKey]);
-
+    this.router.navigate(["/searchProducts", searchKey]);
   }
   search(event) {
     this.productService.getProductBySearch(event.query).subscribe((success) => {
@@ -75,7 +79,7 @@ export class LayoutComponent implements OnInit {
     }),
       (error) => {
         console.log(error);
-      }
+      };
     this.text = event.query;
   }
 
@@ -87,6 +91,6 @@ export class LayoutComponent implements OnInit {
         let productId = hit._source.productId;
         this.router.navigate(["/product-details", productId]);
       }
-    })
+    });
   }
 }

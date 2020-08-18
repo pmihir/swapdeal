@@ -10,8 +10,15 @@
         <div class="col-md-5">
           <div class="header-search">
             <form>
-              <p-autoComplete #name [(ngModel)]="text" [ngModelOptions]="{standalone:true}" [suggestions]="results"
-                (onSelect)="getSearchProduct($event)" (completeMethod)="search($event)" size="40">
+              <p-autoComplete
+                #name
+                [(ngModel)]="text"
+                [ngModelOptions]="{ standalone: true }"
+                [suggestions]="results"
+                (onSelect)="getSearchProduct($event)"
+                (completeMethod)="search($event)"
+                size="40"
+              >
               </p-autoComplete>
 
               <button class="search-btn" (click)="searchProducts()">
@@ -32,14 +39,14 @@
             <div>
               <a href="#">
                 <i class="fa fa-shopping-cart"></i>
-                <span>Your Wishlist</span>
-                <div class="qty">2</div>
+                <span>Your Cart</span>
+                <div class="qty">{{ cartLength }}</div>
               </a>
             </div>
             <div>
-              <a href="#">
+              <a routerLink="/authentication/login">
                 <i class="fa fa-user-o"></i>
-                <span>My Account</span>
+                <span routerLink="/authentication/login">{{ userName }}</span>
               </a>
             </div>
           </div>
@@ -50,25 +57,49 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav main-nav">
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('Electronics')">Electronics</a>
+            <a
+              class="nav-link navbar-font"
+              (click)="changeCategory('Electronics')"
+              >Electronics</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('TV&Appliances')">TV & Appliances</a>
+            <a
+              class="nav-link navbar-font"
+              (click)="changeCategory('TV&Appliances')"
+              >TV & Appliances</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('Men')">Men</a>
+            <a class="nav-link navbar-font" (click)="changeCategory('Men')"
+              >Men</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('Women')">Women</a>
+            <a class="nav-link navbar-font" (click)="changeCategory('Women')"
+              >Women</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('Baby & Kids')">Baby & Kids</a>
+            <a
+              class="nav-link navbar-font"
+              (click)="changeCategory('Baby & Kids')"
+              >Baby & Kids</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('Home and Furniture')">Home and Furniture</a>
+            <a
+              class="nav-link navbar-font"
+              (click)="changeCategory('Home and Furniture')"
+              >Home and Furniture</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-font" (click)="changeCategory('Sports&Books')">Sports & Books</a>
+            <a
+              class="nav-link navbar-font"
+              (click)="changeCategory('Sports&Books')"
+              >Sports & Books</a
+            >
           </li>
         </ul>
       </div>

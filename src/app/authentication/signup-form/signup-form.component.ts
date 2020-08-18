@@ -63,8 +63,9 @@ export class SignupFormComponent {
         this.signInService.login(localObject).subscribe(
           (success) => {
             sessionStorage.setItem("access_token", success.token);
-            sessionStorage.setItem("username", success.user.username);
-            console.log(success);
+            sessionStorage.setItem("user", JSON.stringify(success.user));
+            let cart = JSON.parse(sessionStorage.getItem("user"));
+            console.log(cart.username);
             this.router.navigate(["/dashboard"]);
           },
           (error) => {

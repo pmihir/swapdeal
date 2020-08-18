@@ -9,6 +9,7 @@ import { AuthGuard } from "./auth.guard";
 import { StoreComponent } from "./store/store.component";
 import { ProductDetailsComponent } from "./product-details/product-details.component";
 import { SearchProductsComponent } from './search-products/search-products.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "searchProducts/:searchKey", component: SearchProductsComponent },
   { path: "product-details/:productId", component: ProductDetailsComponent },
+  { path: "cart", component: CartComponent },
   {
     path: "authentication",
     loadChildren: () =>

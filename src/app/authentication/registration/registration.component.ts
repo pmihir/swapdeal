@@ -79,6 +79,7 @@ export class RegistrationComponent implements OnInit {
       email: this.registerForm.value.email,
       phonenumber: this.registerForm.value.phoneNumber,
       password: this.registerForm.value.password,
+      cart: [],
     };
 
     this.registrationService.registerUser(userObj).subscribe(
