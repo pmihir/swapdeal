@@ -16,4 +16,10 @@ export class AddToCartService {
       cartObj
     );
   }
+  getCartData(userId: string): Observable<any> {
+    console.log(userId);
+    return this.http.get("http://localhost:3000/cartRouter/getCartData", {
+      params: { userId: userId },
+    });
+  }
 }

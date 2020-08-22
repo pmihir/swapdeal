@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AddToCartService } from "./add-to-cart.service";
 import { NotifierService } from "angular-notifier";
+import { AppComponent } from "../app.component";
 
 @Component({
   selector: "app-button",
@@ -12,6 +13,7 @@ export class ButtonComponent implements OnInit {
   data: any;
   constructor(
     private addToCartService: AddToCartService,
+    private notificationService: AppComponent,
     private notifier: NotifierService
   ) {}
 
@@ -29,20 +31,16 @@ export class ButtonComponent implements OnInit {
     this.addToCartService.addToCartProduct(prodObj, userData._id).subscribe(
       (success) => {
         console.log(success);
-        this.showNotification("success", "Item successfully added to cart!!!");
+        sessionStorage.setItem("cartLength", success.cart.length);
+        sessionStorage.setItem("cart", JSON.stringify(success.cart));
+        this.notificationService.showNotification(
+          "success",
+          "Item successfully added to cart!!!"
+        );
       },
       (error) => {
         console.log(error);
       }
     );
-  }
-
-  showNotification(type, message) {
-    return new Promise((resolve, reject) => {
-      this.notifier.notify(type, message);
-      setTimeout(function () {
-        resolve();
-      }, 1000);
-    });
   }
 }

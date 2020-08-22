@@ -43,7 +43,8 @@ export class LayoutComponent implements OnInit {
     } else {
       let userData = JSON.parse(sessionStorage.getItem("user"));
       this.userName = userData.username;
-      this.cartLength = userData.cart.length;
+      // this.cartLength = JSON.parse(sessionStorage.getItem("user"));
+      this.cartLength = sessionStorage.getItem("cartLength");
       // this.userName = sessionStorage.getItem("user.username");
     }
   }

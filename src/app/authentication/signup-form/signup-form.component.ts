@@ -62,10 +62,13 @@ export class SignupFormComponent {
         };
         this.signInService.login(localObject).subscribe(
           (success) => {
+            console.log(success);
             sessionStorage.setItem("access_token", success.token);
             sessionStorage.setItem("user", JSON.stringify(success.user));
+            sessionStorage.setItem("cartLength", success.user.cart.length);
+            sessionStorage.setItem("cart", JSON.stringify(success.user.cart));
+            console.log(JSON.parse(sessionStorage.getItem("cart")));
             let cart = JSON.parse(sessionStorage.getItem("user"));
-            console.log(cart.username);
             this.router.navigate(["/dashboard"]);
           },
           (error) => {

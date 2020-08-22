@@ -43,6 +43,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CartComponent } from './cart/cart.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonComponent } from './button/button.component';
+import { PricecalculationPipe } from './cart/pricecalculation.pipe';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -109,6 +110,7 @@ export function socialConfigs() {
     SearchProductsComponent,
     CartComponent,
     ButtonComponent,
+    PricecalculationPipe,
   ],
   imports: [
     BrowserModule,

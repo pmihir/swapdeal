@@ -1,95 +1,95 @@
 <app-layout></app-layout>
 <div class="section">
-    <div class="container-fluid layout">
-        <div class="row">
-            <div class="col-md-6 order-details">
-                <div class="section-title">
-                    <h3 class="title">Your Cart</h3>
-                </div>
-                <div class="order-products">
-                    <div class="order-col">
-                        <div><strong>PRODUCT</strong></div>
-                        <div><strong>DESCRIPTION</strong></div>
-                        <div><strong>PRICE</strong></div>
-                    </div>
-                </div>
-                <div class="order-products">
-                    <div class="order-col">
-                        <div><img src="../../assets/Electronics/hp-14.jpg" height="150px" width="150px" alt="" />
-                            <div class="upper">
-                                <p-inputNumber style="height: 10px;" size="2" [step]="1" [(ngModel)]="value18"
-                                    [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
-                                    spinnerMode="horizontal" decrementButtonClass="p-button-danger"
-                                    incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
-                                    decrementButtonIcon="pi pi-minus">
-                                </p-inputNumber>
-                            </div>
-                        </div>
-                        <div>
-                            <strong>HP 14 PENTIUM GOLD(4GB/256GB/I5/2GB)</strong>
-                            <div class="description">Seller : HP</div>
-                            <div class="description">Delivery in 2 Days, Fri | Free</div>
-                            <div class="description">10 Days Replacement Policy</div>
-
-                            <div class="inner">
-                                <div>REMOVE</div>
-                                <div style="padding-left:30px;">SAVE FOR LATER</div>
-                            </div>
-                        </div>
-                        <div><strong>RS 11,999</strong></div>
-                    </div>
-                    <div class="order-col">
-                        <div><img src="../../assets/Electronics/hp-14.jpg" height="150px" width="150px" alt="" />
-                            <div class="upper">
-                                <p-inputNumber style="height: 10px;" size="2" [step]="1" [(ngModel)]="value18"
-                                    [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
-                                    spinnerMode="horizontal" decrementButtonClass="p-button-danger"
-                                    incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
-                                    decrementButtonIcon="pi pi-minus">
-                                </p-inputNumber>
-                            </div>
-                        </div>
-                        <div>
-                            <strong>HP 14 PENTIUM GOLD(4GB/256GB/I5/2GB)</strong>
-                            <div class="description">Seller : HP</div>
-                            <div class="description">Delivery in 2 Days, Fri | Free</div>
-                            <div class="description">10 Days Replacement Policy</div>
-
-                            <div class="inner">
-                                <div>REMOVE</div>
-                                <div style="padding-left:30px;">SAVE FOR LATER</div>
-                            </div>
-                        </div>
-                        <div><strong>RS 11,999</strong></div>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <a href="" class="primary-btn order-submit">Place Order</a>
-                </div>
-
-            </div>
-            <div style="margin-left:20px;" class="col-md-4  order-details">
-
-                <div class="price-title">
-                    <h5 class="title">Price Details</h5>
-                </div>
-                <div class="price-products">
-                    <div class="price-col">
-                        <div class="price-text">PRICE (2 ITEMS)</div>
-                        <div class="price-text" style="text-align: right;">RS 23,000</div>
-                    </div>
-                    <div class="price-col">
-                        <div class="price-text">DELIVERY FEE</div>
-                        <div class="price-text" style="text-align: right;">RS 500</div>
-                    </div>
-                    <div class="price-col" style="margin-top: 15px;">
-                        <div class="total-price">TOTAL AMOUNT</div>
-                        <div class="total-price" style="text-align: right;">RS 23,500</div>
-                    </div>
-                </div>
-            </div>
+  <div class="container-fluid layout">
+    <div class="row">
+      <div class="col-md-6 order-details">
+        <div class="section-title">
+          <h3 class="title">Your Cart</h3>
         </div>
+        <div class="order-products">
+          <div class="order-col">
+            <div><strong>PRODUCT</strong></div>
+            <div><strong>DESCRIPTION</strong></div>
+            <div><strong>PRICE</strong></div>
+          </div>
+        </div>
+        <div class="order-products">
+          <div class="order-col" *ngFor="let product of cartArray">
+            <div>
+              <img
+                src="{{ product.image }}"
+                height="150px"
+                width="150px"
+                alt=""
+              />
+              <div class="upper">
+                <p-inputNumber
+                  #changedQty
+                  style="height: 10px;"
+                  size="2"
+                  [ngModel]="product.qty"
+                  [step]="1"
+                  [showButtons]="true"
+                  buttonLayout="horizontal"
+                  inputId="horizontal"
+                  spinnerMode="horizontal"
+                  decrementButtonClass="p-button-danger"
+                  incrementButtonClass="p-button-success"
+                  incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"
+                  (ngModelChange)="changeQty(product.pId, changedQty)"
+                >
+                </p-inputNumber>
+              </div>
+            </div>
+            <div>
+              <strong>{{ product.pName }}</strong>
+              <div class="description">Seller : {{ product.brand }}</div>
+              <div class="description">Delivery in 2 Days, Fri | Free</div>
+              <div class="description">10 Days Replacement Policy</div>
 
+              <div class="inner">
+                <div (click)="removeProduct(product.pId)">REMOVE</div>
+                <div style="padding-left: 30px;">SAVE FOR LATER</div>
+              </div>
+            </div>
+            <div>
+              <strong
+                >RS {{ product.price | pricecalculation: product.qty }}</strong
+              >
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <a href="" class="primary-btn order-submit">Place Order</a>
+        </div>
+      </div>
+      <div style="margin-left: 20px;" class="col-md-4 order-details">
+        <div class="price-title">
+          <h5 class="title">Price Details</h5>
+        </div>
+        <div class="price-products">
+          <div class="price-col">
+            <div class="price-text">PRICE (2 ITEMS)</div>
+            <div class="price-text" style="text-align: right;">
+              RS {{ this.productTotal }}
+            </div>
+          </div>
+          <div class="price-col">
+            <div class="price-text">DELIVERY FEE</div>
+            <div class="price-text" style="text-align: right;">
+              RS {{ this.delieveryPrice }}
+            </div>
+          </div>
+          <div class="price-col" style="margin-top: 15px;">
+            <div class="total-price">TOTAL AMOUNT</div>
+            <div class="total-price" style="text-align: right;">
+              RS {{ this.totalPrice }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <app-footer></app-footer>
