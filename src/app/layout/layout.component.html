@@ -40,7 +40,7 @@
               <a routerLink="/cart">
                 <i class="fa fa-shopping-cart"></i>
                 <span>Your Cart</span>
-                <div class="qty">{{ cartLength }}</div>
+                <div class="qty" *ngIf="cartDisplay">{{ cartLength }}</div>
               </a>
             </div>
             <div>

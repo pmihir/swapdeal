@@ -28,6 +28,7 @@ export class LayoutComponent implements OnInit {
   searchProductArray: any[] = [];
   dummyArray: any[];
   cartLength: any;
+  cartDisplay: boolean = true;
 
   ngOnInit() {}
 
@@ -40,6 +41,7 @@ export class LayoutComponent implements OnInit {
   ngDoCheck() {
     if (sessionStorage.getItem("access_token") == null) {
       this.userName = "Sign In";
+      this.cartDisplay = false;
     } else {
       let userData = JSON.parse(sessionStorage.getItem("user"));
       this.userName = userData.username;

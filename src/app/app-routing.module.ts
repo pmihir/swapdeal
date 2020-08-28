@@ -8,8 +8,9 @@ import { ResponseResetPasswordComponent } from "./authentication/response-reset-
 import { AuthGuard } from "./auth.guard";
 import { StoreComponent } from "./store/store.component";
 import { ProductDetailsComponent } from "./product-details/product-details.component";
-import { SearchProductsComponent } from './search-products/search-products.component';
-import { CartComponent } from './cart/cart.component';
+import { SearchProductsComponent } from "./search-products/search-products.component";
+import { CartComponent } from "./cart/cart.component";
+import { OrderDetailsComponent } from "./order-details/order-details.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "searchProducts/:searchKey", component: SearchProductsComponent },
   { path: "product-details/:productId", component: ProductDetailsComponent },
+  { path: "order-details", component: OrderDetailsComponent },
   { path: "cart", component: CartComponent },
   {
     path: "authentication",
@@ -31,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

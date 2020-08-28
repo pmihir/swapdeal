@@ -13,14 +13,24 @@ export class CartComponent implements OnInit {
   delieveryPrice: number = 500;
   productTotal: number = 0;
   calculatedPrice: number;
+  cartDisplay: boolean;
+  isLoggedIn: boolean = true;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("access_token") == null) {
+      this.isLoggedIn = false;
+    }
     let array: any = JSON.parse(sessionStorage.getItem("cart"));
     for (let i in array) {
       this.productTotal += array[i].price * array[i].qty;
       this.cartArray.push(array[i]);
+    }
+    if (this.cartArray.length == 0) {
+      this.cartDisplay = false;
+    } else {
+      this.cartDisplay = true;
     }
     this.totalPrice = this.productTotal + this.delieveryPrice;
   }
@@ -58,10 +68,16 @@ export class CartComponent implements OnInit {
       (success) => {
         this.productTotal = 0;
         this.cartArray = success.cart;
-        for (let i in this.cartArray) {
-          this.productTotal += this.cartArray[i].price * this.cartArray[i].qty;
+        if (this.cartArray.length == 0) {
+          this.cartDisplay = false;
+        } else {
+          this.cartDisplay = true;
+          for (let i in this.cartArray) {
+            this.productTotal +=
+              this.cartArray[i].price * this.cartArray[i].qty;
+          }
+          this.totalPrice = this.productTotal + this.delieveryPrice;
         }
-        this.totalPrice = this.productTotal + this.delieveryPrice;
         sessionStorage.setItem("cart", JSON.stringify(success.cart));
       },
       (error) => {

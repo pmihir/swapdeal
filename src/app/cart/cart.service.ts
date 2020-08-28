@@ -24,12 +24,11 @@ export class CartService {
     );
   }
 
-  // addToCartProduct(data: Object, userId: string): Observable<any> {
-  //   console.log(data, userId);
-  //   let cartObj = { productData: data, userId: userId };
-  //   return this.http.post(
-  //     "http://localhost:3000/cartRouter/addToCart",
-  //     cartObj
-  //   );
-  // }
+  checkout(orderDetails: any): Observable<any> {
+    console.log(orderDetails);
+    return this.http.post(
+      "http://localhost:3000/cartRouter/removeProduct",
+      orderDetails
+    );
+  }
 }

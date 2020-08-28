@@ -1,7 +1,71 @@
 <app-layout></app-layout>
 <div class="section">
   <div class="container-fluid layout">
-    <div class="row">
+    <div class="row" style="margin-left: -200px;" *ngIf="!isLoggedIn">
+      <div class="col-md-12">
+        <div
+          class="order-details"
+          style="width: 700px; height: 500px; margin: auto;"
+        >
+          <div class="section-title">
+            <h3 class="title">Your Cart</h3>
+          </div>
+          <div>
+            <img
+              src="../../assets/emptyCart.png"
+              style="width: 500px; height: 270px; margin-left: 50px;"
+              alt=""
+            />
+          </div>
+          <div class="section-title" style="text-align: center;">
+            <h5 class="title">Missing Cart Items</h5>
+          </div>
+          <div class="section-title" style="text-align: center;">
+            <p>Login to See the items you added previously</p>
+          </div>
+          <div style="padding-left: 215px;">
+            <a
+              href=""
+              [routerLink]="['/authentication/login']"
+              class="primary-btn order-submit"
+              >Login</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row"
+      style="margin-left: -200px;"
+      *ngIf="!cartDisplay && isLoggedIn"
+    >
+      <div class="col-md-12">
+        <div
+          class="order-details"
+          style="width: 700px; height: 415px; margin: auto;"
+        >
+          <div class="section-title">
+            <h3 class="title">Your Cart</h3>
+          </div>
+          <div>
+            <img
+              src="../../assets/emptyCart.png"
+              style="width: 500px; height: 270px; margin-left: 50px;"
+              alt=""
+            />
+          </div>
+          <div style="padding-left: 192px;">
+            <a
+              href=""
+              [routerLink]="['/dashboard']"
+              class="primary-btn order-submit"
+              >Shop Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="cartDisplay">
       <div class="col-md-6 order-details">
         <div class="section-title">
           <h3 class="title">Your Cart</h3>

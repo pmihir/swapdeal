@@ -17,6 +17,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { NotifierModule, NotifierOptions } from "angular-notifier";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AuthInterceptor } from "./auth.interceptor";
+// import { MatStepperModule } from "@angular/material/stepper";
+
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -38,12 +40,13 @@ import { ListboxModule } from "primeng/listbox";
 import { SliderModule } from "primeng/slider";
 import { ProductDetailsComponent } from "./product-details/product-details.component";
 import { DialogModule } from "primeng/dialog";
-import { SearchProductsComponent } from './search-products/search-products.component';
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import { CartComponent } from './cart/cart.component';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { ButtonComponent } from './button/button.component';
-import { PricecalculationPipe } from './cart/pricecalculation.pipe';
+import { SearchProductsComponent } from "./search-products/search-products.component";
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { CartComponent } from "./cart/cart.component";
+import { InputNumberModule } from "primeng/inputnumber";
+import { ButtonComponent } from "./button/button.component";
+import { PricecalculationPipe } from "./cart/pricecalculation.pipe";
+import { OrderDetailsComponent } from "./order-details/order-details.component";
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -111,6 +114,7 @@ export function socialConfigs() {
     CartComponent,
     ButtonComponent,
     PricecalculationPipe,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,7 +134,7 @@ export function socialConfigs() {
     SliderModule,
     DialogModule,
     AutoCompleteModule,
-    InputNumberModule
+    InputNumberModule,
   ],
   providers: [
     UriService,
@@ -143,4 +147,4 @@ export function socialConfigs() {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
